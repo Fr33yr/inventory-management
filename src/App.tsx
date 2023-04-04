@@ -4,10 +4,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 //import { themeSettings } from "theme";
-import { Layout } from "./components/common";
 import { useSelector } from "react-redux";
-import { Breakdown, Dashboard,Products,Transactions,Performance,Admin } from "./pages";
-
+import { ThemeProvider } from "@mui/material";
 import Layout from "./components/common/layout/Layout";
 import {
   Breakdown,
