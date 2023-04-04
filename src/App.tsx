@@ -2,15 +2,25 @@ import { createTheme } from '@mui/material/styles';
 import { green, purple } from '@mui/material/colors';
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 //import { themeSettings } from "theme";
 import { Layout } from "./components/common";
 import { useSelector } from "react-redux";
 import { Breakdown, Dashboard,Products,Transactions,Performance,Admin } from "./pages";
 
+import Layout from "./components/common/layout/Layout";
+import {
+  Breakdown,
+  Dashboard,
+  Products,
+  Transactions,
+  Performance,
+  Admin,
+} from "./pages";
+
 
 function App() {
+
   // const mode = useSelector((state:any)=>state.global.mode);
   const theme = createTheme({
     palette: {
