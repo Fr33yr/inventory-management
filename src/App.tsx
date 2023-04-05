@@ -1,9 +1,8 @@
 import { createTheme } from '@mui/material/styles';
-import { green, purple } from '@mui/material/colors';
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
-//import { themeSettings } from "theme";
+import { themeSettings } from '../src/theme'
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "@mui/material";
 import Layout from "./components/common/layout/Layout";
@@ -15,21 +14,13 @@ import {
   Performance,
   Admin,
 } from "./pages";
+import { useMemo } from 'react';
 
 
 function App() {
 
-  // const mode = useSelector((state:any)=>state.global.mode);
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: purple[500],
-      },
-      secondary: {
-        main: green[500],
-      },
-    },
-  });
+  const mode = useSelector((state) => state.global.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <div className="app">
       <BrowserRouter>

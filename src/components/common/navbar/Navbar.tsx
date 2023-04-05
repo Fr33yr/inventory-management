@@ -9,7 +9,7 @@ import {
 } from "@mui/icons-material";
 import FlexBetween from "../flexbetween/FlexBetween";
 import { useDispatch } from "react-redux";
-//import { setMode } from "state";
+import { setMode } from "../../../redux/slices/globalSlice";
 import profileImage from "assets/react.svg";
 import {
   useTheme,
@@ -45,6 +45,19 @@ function Navbar() {
           <InputBase placeholder="Search..." />
           <IconButton>
             <Search />
+          </IconButton>
+        </FlexBetween>
+        {/*RIGHT SIDE*/}
+        <FlexBetween gap="1.5rem">
+          <IconButton onClick={()=>dispatch(setMode())}>
+            {theme.palette.mode==='dark'?(
+              <DarkModeOutlined sx={{fontSize:"25px"}}/>
+            ):(
+              <LightModeOutlined sx={{fontSize:"25px"}}/>
+            )}
+          </IconButton>
+          <IconButton>
+            <SettingsOutlined sx={{fontSize:"25px"}}/>
           </IconButton>
         </FlexBetween>
       </Toolbar>
