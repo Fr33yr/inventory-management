@@ -6,6 +6,7 @@ import { themeSettings } from '../src/theme'
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "@mui/material";
 import Layout from "./components/common/layout/Layout";
+import {IGlobalState} from './redux/slices/globalSlice'
 import {
   Breakdown,
   Dashboard,
@@ -19,7 +20,7 @@ import { useMemo } from 'react';
 
 function App() {
 
-  const mode = useSelector((state) => state.global.mode);
+  const mode = useSelector((state:IGlobalState) => state.global.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <div className="app">
@@ -28,7 +29,7 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Navigate to="/dashborad" replace />} />
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
               <Route path="/performance" element={<Performance />} />

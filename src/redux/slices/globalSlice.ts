@@ -1,9 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface IGlobal {
+  mode: string,
+  userId: string
+}
+
+const initialState: IGlobal = {
   mode: "dark",
   userId: "63701cc1f03239b7f700000e",
 };
+
+export interface IGlobalState {
+  global: IGlobal
+}
 
 export const globalSlice = createSlice({
   name: "global",
