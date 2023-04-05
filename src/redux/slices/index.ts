@@ -1,2 +1,3 @@
-export { default as cartReducer } from "./cartSlices";
-export { default as productsReducer } from "./productsSlices";
+export { default as cartSlices } from './cartSlices';
+export { default as globalSlice } from './globalSlice';
+export { default as productsSlices } from './productsSlices';
