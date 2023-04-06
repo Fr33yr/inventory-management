@@ -6,7 +6,7 @@
 
 To install and run the application on a local machine, use this comands.
 
-intsllation: ```yarn```
+install: ```yarn```
 run: ```yarn dev```
 
 ## Usage instructions
