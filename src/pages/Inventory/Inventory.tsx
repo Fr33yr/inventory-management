@@ -41,7 +41,7 @@ function Inventory() {
     field: string;
     headerName: string;
     width: number;
-    renderCell?: () => ReactElement | null;
+    renderCell?: (params:any) => ReactElement | null;
     sortable: boolean;
   }
 
@@ -51,7 +51,7 @@ function Inventory() {
       field: "image",
       headerName: "Image",
       width: 150,
-      renderCell: () => <Image url={imgUrl} width={50} height={50} />,
+      renderCell: (params) => <Image url={params.value} width={50} height={50} />,
       sortable: false,
     },
     {
