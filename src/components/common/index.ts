@@ -1,5 +1,4 @@
-export { default as FlexBetween } from './flexbetween/FlexBetween';
-export { default as Layout } from './layout/Layout';
-export { default as Navbar } from './navbar/Navbar';
-export { default as Image } from './react-Image/Image';
-export { default as Sidebar } from './sidebar/Sidebar';
+export { default as Footer } from './layout/footer/Footer';
+export { default as Header } from './layout/header/Header';
+export * from './layout';
+export { default as SideMenu } from './layout/sidemenu/SideMenu';
