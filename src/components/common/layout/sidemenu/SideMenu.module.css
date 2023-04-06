@@ -1,0 +1,19 @@
+.sidemenu{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.sidemenu ul{
+    justify-content: space-between;
+    padding: 0 1rem;
+    list-style: none;
+}
+
+.sidemenu li {
+    margin: 2rem 0;
+}
+
+.sidemenu a{
+    text-decoration: none;
+}
