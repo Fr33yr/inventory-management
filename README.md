@@ -1,6 +1,8 @@
 # Inventory management
 
 ## Description
+This inventory management web app has many features including a dashboard page to show statistics,
+several table pages to showcase clients, orders and inventory.
 
 ## Instalation
 
