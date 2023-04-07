@@ -5,6 +5,9 @@ interface Props {
     data: IStatsData
 }
 
+// Este componente se encarga renderizar
+// informacion de las cards
+
 function StatsCard({data}:Props) {
 
   return (

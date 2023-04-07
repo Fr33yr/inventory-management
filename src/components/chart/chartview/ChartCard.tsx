@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+
+// Este componente solo se encarga de renderizar
+// el contenido de la chart 
 
 function ChartCard() {
   return (
-    <div>ChartCard</div>
-  )
+    <>
+      <h2>ChartCard</h2>
+    </>
+  );
 }
 
-export default ChartCard
+export default ChartCard;
