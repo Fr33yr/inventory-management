@@ -1,4 +1,4 @@
-import StatsCard from "./statscard/StatsCard";
+import StatsCard from "./statsview/StatsCard";
 import { fakeStats } from "../../utils/fakeStats";
 import { IStatsData } from "models/data/stats.model";
 import styles from './Stats.module.css'
