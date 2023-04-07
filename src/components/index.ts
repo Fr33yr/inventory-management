@@ -1,4 +1,4 @@
-export * from './chart/Chart';
+export { default as Chart } from './chart/Chart';
 export { default as ChartCard } from './chart/chartview/ChartCard';
 export { default as PageContent } from './common/PageContent/PageContent';
 export * from './common';
@@ -9,5 +9,6 @@ export { default as MenuLink } from './common/layout/sidemenu/MenuLink/MenuLink'
 export { default as SideMenu } from './common/layout/sidemenu/SideMenu';
 export { default as Loader } from './common/loader/Loader';
 export { default as Image } from './common/react-image/Image';
+export { default as DashboardTable } from './dashboardtable/DashboardTable';
 export { default as Stats } from './stats/Stats';
 export { default as StatsCard } from './stats/statsview/StatsCard';
