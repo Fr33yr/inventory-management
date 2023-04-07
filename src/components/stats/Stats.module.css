@@ -1,0 +1,4 @@
+.statscontainer{
+    display: flex;
+    flex-direction: row;
+}

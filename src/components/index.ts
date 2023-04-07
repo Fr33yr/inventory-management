@@ -7,3 +7,5 @@ export { default as MenuLink } from './common/layout/sidemenu/MenuLink/MenuLink'
 export { default as SideMenu } from './common/layout/sidemenu/SideMenu';
 export { default as Loader } from './common/loader/Loader';
 export { default as Image } from './common/react-image/Image';
+export { default as Stats } from './stats/Stats';
+export { default as StatsCard } from './stats/statscard/StatsCard';

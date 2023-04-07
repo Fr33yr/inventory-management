@@ -1,8 +1,8 @@
-import React from 'react'
+import {Stats} from '../../components/index'
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div><Stats/></div>
   )
 }
 
