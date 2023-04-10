@@ -2,7 +2,8 @@ const Monts: string[] = [
   "April",
   "June",
   "September",
-  "NovemberJanuary",
+  "November",
+  "January",
   "March",
   "May",
   "July",
@@ -17,9 +18,5 @@ type width = {
 }
 
 export function Utils({count}: width){
-    if(count > Monts.length || count === 0){
-        return Monts
-    }else{
-        return Monts.slice(0,count)
-    }
+    return Monts.slice(0,count)
 }
