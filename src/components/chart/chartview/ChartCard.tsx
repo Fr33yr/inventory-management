@@ -1,14 +1,25 @@
-import React from "react";
+import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, registerables} from "chart.js/auto";
 
 // Este componente solo se encarga de renderizar
-// el contenido de la chart 
+// el contenido de la chart
 
-function ChartCard() {
-  return (
-    <>
-      <h2>ChartCard</h2>
-    </>
-  );
+interface DataSets {
+  label: string,
+  data: number[]
+}
+
+interface Props {
+  chartData: {
+    labels: string[];
+    datasets: DataSets[]
+  };
+}
+
+ChartJS.register(...registerables)
+
+function ChartCard({ chartData }: Props) {
+  return <Bar data={chartData} />;
 }
 
 export default ChartCard;
