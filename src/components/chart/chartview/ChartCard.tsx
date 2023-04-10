@@ -1,4 +1,4 @@
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, registerables} from "chart.js/auto";
 
 // Este componente solo se encarga de renderizar
@@ -19,7 +19,7 @@ interface Props {
 ChartJS.register(...registerables)
 
 function ChartCard({ chartData }: Props) {
-  return <Bar data={chartData} />;
+  return <Line data={chartData} />;
 }
 
 export default ChartCard;
