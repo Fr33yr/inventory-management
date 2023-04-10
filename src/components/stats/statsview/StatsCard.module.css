@@ -1,0 +1,20 @@
+.statscard {
+  border: 1px solid rgb(136, 136, 136);
+  border-radius: 2px;
+  min-width: 6rem;
+  text-align: center;
+  margin: 0 2rem;
+}
+
+.statscard:hover {
+  filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03))
+    drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+}
+
+.statcardname {
+  font-weight: lighter;
+}
+
+.statcardstat {
+  font-weight: bold;
+}
