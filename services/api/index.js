@@ -10,7 +10,7 @@ export const getOrders = () => {
     return fetch("https://dummyjson.com/products").then((res) => res.json());
   };
   
-  export const getCustomers = () => {
+  export const getProviders = () => {
     return fetch("https://dummyjson.com/users").then((res) => res.json());
   };
   export const getComments = () => {

@@ -1,14 +1,14 @@
 import { Avatar, Space, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { getCustomers } from "../../../services/api";
+import { getProviders } from "../../../services/api";
 
-function Customers() {
+function Providers() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    getCustomers().then((res) => {
+    getProviders().then((res) => {
       setDataSource(res.users);
       setLoading(false);
     });
@@ -47,4 +47,4 @@ function Customers() {
     </Space>
   );
 }
-export default Customers;
+export default Providers;

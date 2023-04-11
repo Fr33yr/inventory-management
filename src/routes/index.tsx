@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Dashboard, Customers, Inventory, Orders } from "../pages";
+import { Dashboard, Providers, Inventory, Orders } from "../pages";
 import { ROUTES } from "../models/index";
 
 function AppRoutes() {
@@ -12,7 +12,7 @@ function AppRoutes() {
       <Route path={ROUTES.DASHBOARD.path} element={<Dashboard />} />
       <Route path={ROUTES.INVENTORY.path} element={<Inventory />} />
       <Route path={ROUTES.ORDERS.path} element={<Orders />} />
-      <Route path={ROUTES.CUSTOMERS.path} element={<Customers />} />
+      <Route path={ROUTES.PROVIDERS.path} element={<Providers />} />
     </Routes>
   );
 }
