@@ -23,5 +23,5 @@ export const ROUTES: IRoutes = {
   PROVIDERS: {
     path: "/providers",
     name: "Providers",
-  },
+}
 };

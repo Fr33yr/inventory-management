@@ -7,6 +7,10 @@ import {
   ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import {useState,useEffect} from 'react'
+import {getCustomers,getInventory,getOrders,getRevenue} from '../../../../services/api'
+import { render } from "react-dom";
+
 
 interface Props {
   data: IStatsData;
@@ -16,6 +20,23 @@ interface Props {
 // informacion de las cards
 
 function StatsCard({ data }: Props) {
+  const [orders, setOrders] = useState(0);
+  const [inventory, setInventory] = useState(0);
+  const [customers, setCustomers] = useState(0);
+  const [revenue, setRevenue] = useState(0);
+
+  useEffect(() => {
+    getOrders().then((res) => {
+      setOrders(res.total);
+      setRevenue(res.discountedTotal);
+    });
+    getInventory().then((res) => {
+      setInventory(res.total);
+    });
+    getCustomers().then((res) => {
+      setCustomers(res.total);
+    });
+  }, []);
   return (
     <div className={styles.statscard}>
       {data.name === "Orders" ? (
@@ -30,7 +51,7 @@ function StatsCard({ data }: Props) {
                 padding: 8,
               }}
             />
-            <Statistic title={data.name} value={data.stat} />
+            <Statistic title={"Orders"} value={orders} />
           </Space>
         </Card>
       ) : data.name === "Inventory" ? (
@@ -45,7 +66,7 @@ function StatsCard({ data }: Props) {
                 padding: 8,
               }}
             />
-            <Statistic title={data.name} value={data.stat} />
+            <Statistic title={"Inventory"} value={inventory} />
           </Space>
         </Card>
       ) : data.name === "Customers" ? (
@@ -60,7 +81,7 @@ function StatsCard({ data }: Props) {
                 padding: 8,
               }}
             />
-            <Statistic title={data.name} value={data.stat} />
+            <Statistic title={"Customers"} value={customers} />
           </Space>
         </Card>
       ) : data.name === "Revenue" ? (
@@ -75,7 +96,7 @@ function StatsCard({ data }: Props) {
                 padding: 8,
               }}
             />
-            <Statistic title={data.name} value={data.stat} />
+            <Statistic title={"Renueve"} value={revenue} />
           </Space>
         </Card>
       ) : null}
