@@ -20,8 +20,8 @@ export const ROUTES: IRoutes = {
     path: "/orders",
     name: "Orders",
   },
-  CUSTOMERS: {
-    path: "/customers",
-    name: "Customers",
+  PROVIDERS: {
+    path: "/providers",
+    name: "Providers",
   },
 };
