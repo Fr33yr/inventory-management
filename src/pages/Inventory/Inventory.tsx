@@ -83,7 +83,7 @@ function Inventory() {
   return (
     <div>
       <h2>Inventory</h2>
-      <div style={{ height: 800, width: "100%" }}>
+      <div style={{ height: 800, width: 500 }}>
         <DataGrid
           rows={data}
           columns={columns}
