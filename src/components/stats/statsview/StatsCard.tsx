@@ -7,8 +7,6 @@ import {
   ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { IStatsData } from "../../../models/data/stats.model";
-import styles from "./StatsCard.module.css";
 
 interface Props {
   data: IStatsData;
