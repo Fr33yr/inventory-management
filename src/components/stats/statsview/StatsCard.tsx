@@ -9,7 +9,6 @@ import {
 } from "@ant-design/icons";
 import {useState,useEffect} from 'react'
 import {getProviders,getInventory,getOrders,getRevenue} from '../../../../services/api'
-import { render } from "react-dom";
 
 
 interface Props {
