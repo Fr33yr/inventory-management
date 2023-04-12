@@ -1,8 +1,8 @@
-import React from 'react'
+import styles from './Header.module.css'
 
 function Header() {
   return (
-    <header>Header</header>
+    <header className={styles.header}>Header</header>
   )
 }
 
