@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getOrders } from "../../../services/api";
 import { Table, Typography } from "antd";
+import styles from './DashboardTable.module.css'
 
 // Este componente renderiza un titulo y una tabla
 // que muestra informacion 
@@ -18,7 +19,7 @@ function DashboardTable() {
   }, []);
 
   return (
-    <>
+    <div className={styles.dashboardtable}>
       <Typography.Text>Recent Orders</Typography.Text>
       <Table
         columns={[
@@ -39,7 +40,7 @@ function DashboardTable() {
         dataSource={dataSource}
         pagination={false}
       ></Table>
-    </>
+    </div>
   );
 }
 
