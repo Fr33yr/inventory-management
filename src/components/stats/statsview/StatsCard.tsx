@@ -8,7 +8,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import {useState,useEffect} from 'react'
-import {getCustomers,getInventory,getOrders,getRevenue} from '../../../../services/api'
+import {getProviders,getInventory,getOrders,getRevenue} from '../../../../services/api'
 import { render } from "react-dom";
 
 
@@ -33,7 +33,7 @@ function StatsCard({ data }: Props) {
     getInventory().then((res) => {
       setInventory(res.total);
     });
-    getCustomers().then((res) => {
+    getProviders().then((res) => {
       setCustomers(res.total);
     });
   }, []);
