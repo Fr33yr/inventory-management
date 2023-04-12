@@ -9,7 +9,7 @@ function AppRoutes() {
         path="/"
         element={<Navigate to={ROUTES.DASHBOARD.path} replace />}
       />
-      <Route path={ROUTES.DASHBOARD.path} element={<Dashboard />} />
+      <Route path={ROUTES.DASHBOARD.path} element={ <Dashboard />} />
       <Route path={ROUTES.INVENTORY.path} element={<Inventory />} />
       <Route path={ROUTES.ORDERS.path} element={<Orders />} />
       <Route path={ROUTES.PROVIDERS.path} element={<Providers />} />

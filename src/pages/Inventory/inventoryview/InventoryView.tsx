@@ -15,13 +15,6 @@ function InventoryView({loading, dataSource}:Props) {
           loading={loading}
           columns={[
             {
-              title: "Image",
-              dataIndex: "thumbnail",
-              render: (link) => {
-                return <Avatar src={link} />;
-              },
-            },
-            {
               title: "Title",
               dataIndex: "title",
             },

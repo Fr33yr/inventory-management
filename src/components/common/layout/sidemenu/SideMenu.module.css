@@ -1,13 +1,19 @@
 .sidemenu{
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    background-color: rgb(116, 169, 239);
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .sidemenu ul{
     justify-content: space-between;
     padding: 0 1rem;
     list-style: none;
+}
+
+.sidemenu li:hover{
+    color: rgb(255, 255, 255);
 }
 
 .sidemenu li {

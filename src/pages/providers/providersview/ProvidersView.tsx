@@ -16,13 +16,6 @@ function ProvidersView({ loading, dataSource }: Props) {
           loading={loading}
           columns={[
             {
-              title: "Photo",
-              dataIndex: "image",
-              render: (link) => {
-                return <Avatar src={link} />;
-              },
-            },
-            {
               title: "First Name",
               dataIndex: "firstName",
             },
