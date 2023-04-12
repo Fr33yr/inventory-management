@@ -1,18 +1,23 @@
-export const getOrders = () => {
-    return fetch("https://dummyjson.com/carts/1").then((res) => res.json());
-  };
-  
-  export const getRevenue = () => {
-    return fetch("https://dummyjson.com/carts").then((res) => res.json());
-  };
-  
-  export const getInventory = () => {
-    return fetch("https://dummyjson.com/products").then((res) => res.json());
-  };
-  
-  export const getProviders = () => {
-    return fetch("https://dummyjson.com/users").then((res) => res.json());
-  };
-  export const getComments = () => {
-    return fetch("https://dummyjson.com/comments").then((res) => res.json());
-  };
+export const getOrders = async () => {
+  const res = await fetch("https://dummyjson.com/carts/1");
+  return await res.json();
+};
+
+export const getRevenue = async () => {
+  const res = await fetch("https://dummyjson.com/carts");
+  return await res.json();
+};
+
+export const getInventory = async () => {
+  const res = await fetch("https://dummyjson.com/products");
+  return await res.json();
+};
+
+export const getProviders = async () => {
+  const res = await fetch("https://dummyjson.com/users");
+  return await res.json();
+};
+export const getComments = async () => {
+  const res = await fetch("https://dummyjson.com/comments");
+  return await res.json();
+};
