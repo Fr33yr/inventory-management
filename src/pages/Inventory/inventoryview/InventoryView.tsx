@@ -1,4 +1,4 @@
-import { Space, Table, Typography } from "antd";
+import { Space, Table, Typography, Button} from "antd";
 import styles from "../Inventory.module.css";
 import type { ColumnsType, TableProps } from "antd/es/table";
 
@@ -26,7 +26,7 @@ function InventoryView({ loading, dataSource }: Props) {
       title: "Price",
       dataIndex: "price",
       defaultSortOrder: "descend",
-      sorter: (a: any, b: any) => a.age - b.age,
+      sorter: (a: any, b: any) => a.price - b.price,
     },
     {
       title: "Brand",
@@ -87,6 +87,7 @@ function InventoryView({ loading, dataSource }: Props) {
     <div className={styles.inventoryview}>
       <Space size={20} style={{ width: 1000 }} direction="vertical">
         <Typography.Title level={4}>Inventory</Typography.Title>
+        <Button type="primary">Add Product</Button>
         <Table
           loading={loading}
           columns={columns}
