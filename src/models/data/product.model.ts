@@ -4,7 +4,7 @@ export interface IProduct {
   name: string;
   category: string;
   price: string;
-  amount: string;
+  quantity: string;
   image: string;
 }
 
@@ -13,6 +13,6 @@ export interface IProductForm {
   name: string;
   category: string;
   price: string;
-  amount: string;
+  quantity: string;
   image: string;
 }
