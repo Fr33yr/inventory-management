@@ -12,12 +12,8 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "../db/config/firebase";
-import { IProductForm, IProduct, ICartItem } from "../../src/models/data/index";
+import { IProductForm, IProduct, IMessage } from "../../src/models/data/index";
 import { useState, useEffect } from "react";
-
-interface IMessage {
-  message: string | Error;
-}
 
 interface IProductsResults {
   products: IProduct[];

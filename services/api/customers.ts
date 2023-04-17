@@ -12,12 +12,8 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "../db/config/firebase";
-import { ICustomer } from "../../src/models/data/index";
+import { ICustomer, IMessage } from "../../src/models/data/index";
 import { useEffect, useState } from "react";
-
-interface IMessage {
-  message: string | Error;
-}
 
 function useCustomers() {
   const [customers, setCustomers] = useState<ICustomer[]>([]);
