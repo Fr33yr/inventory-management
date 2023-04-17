@@ -18,7 +18,7 @@ function ProvidersView({ loading, dataSource }: Props) {
   const columns: ColumnsType<DataType> = [
     {
       title: "First Name",
-      dataIndex: "firstName",
+      dataIndex: "name",
       filters: [
         {
           text: "Terry",
@@ -26,13 +26,13 @@ function ProvidersView({ loading, dataSource }: Props) {
         },
       ],
       filterSearch: true,
-      onFilter: (value: string, record: DataType) =>
+      onFilter: (value: any, record: DataType) =>
         record.firstName.startsWith(value),
       width: "30%",
     },
     {
-      title: "LastName",
-      dataIndex: "lastName",
+      title: "Email",
+      dataIndex: "email",
       filters: [
         {
           text: "Hills",
@@ -40,7 +40,7 @@ function ProvidersView({ loading, dataSource }: Props) {
         },
       ],
       filterSearch: true,
-      onFilter: (value: string, record: DataType) =>
+      onFilter: (value: any, record: DataType) =>
         record.lastName.startsWith(value),
       width: "30%",
     },
