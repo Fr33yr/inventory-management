@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import InventoryView from "./inventoryview/InventoryView";
-import {getDocuments} from '../../../services/api/firebase'
+import { getDocuments } from "../../../services/api/firebase";
 import type { ColumnsType, TableProps } from "antd/es/table";
-import {IMessage} from '../../models/index'
+import { IMessage } from "../../models/index";
+import InventoryForm from "./inventoryform/InventoryForm";
 
 interface DataType {
   key: React.Key;
@@ -13,20 +14,30 @@ interface DataType {
   category: string;
 }
 
+interface MyFormValues {
+  title: string;
+  price: number;
+  stock: number;
+  brand: string;
+  category: string;
+}
+
 function Inventory() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
+  const [form, setForm] = useState(false);
 
-  useEffect(()=>{
-    getDocuments('products').then((res:any)=>{
-      if(res.data){
-        setDataSource(res.data)
-      }else if(res.message){
-        console.log(res.message)
-      }
-    })
-    .catch((err) => console.log(err))
-  },[])
+  useEffect(() => {
+    getDocuments("products")
+      .then((res: any) => {
+        if (res.data) {
+          setDataSource(res.data);
+        } else if (res.message) {
+          console.log(res.message);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const columns: ColumnsType<DataType> = [
     {
@@ -43,7 +54,7 @@ function Inventory() {
       title: "Brand",
       dataIndex: "brand",
       filters: dataSource
-        .map((item:any) => ({ text: item.brand, value: item.brand }))
+        .map((item: any) => ({ text: item.brand, value: item.brand }))
         .filter(
           (obj, index, self) =>
             index === self.findIndex((elem) => elem.text === obj.text)
@@ -53,7 +64,7 @@ function Inventory() {
       title: "Category",
       dataIndex: "category",
       filters: dataSource
-        .map((item:any) => ({ text: item.category, value: item.category }))
+        .map((item: any) => ({ text: item.category, value: item.category }))
         .filter(
           (obj, index, self) =>
             index === self.findIndex((elem) => elem.text === obj.text)
@@ -68,10 +79,20 @@ function Inventory() {
       sorter: (a: any, b: any) => a.stock - b.stock,
     },
   ];
- 
+
   return (
     <>
-      <InventoryView loading={loading} dataSource={dataSource} columns={columns}/>
+      {form ? (
+        <InventoryForm />
+      ) : (
+        <InventoryView
+          loading={loading}
+          dataSource={dataSource}
+          columns={columns}
+          form={form}
+          setForm={setForm}
+        />
+      )}
     </>
   );
 }
