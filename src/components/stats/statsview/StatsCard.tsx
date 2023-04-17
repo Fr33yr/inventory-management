@@ -8,7 +8,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import {useState,useEffect} from 'react'
-import {getProviders,getInventory,getOrders,getRevenue} from '../../../../services/api/index'
+import {getProviders,getInventory,getOrders,getRevenue} from '../../../../services/api/dummy/index'
 
 
 interface Props {

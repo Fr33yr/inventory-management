@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getInventory, getOrders } from "../../../services/api";
+import { getInventory, getOrders } from "../../../services/api/dummy";
 import OrdersView from "./ordersview/OrdersView";
 
 function Orders() {

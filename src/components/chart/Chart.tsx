@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ChartCard from "./chartview/ChartCard";
 import { Card } from "antd";
-import { getRevenue } from "../../../services/api";
+import { getRevenue } from "../../../services/api/dummy";
 import { Line } from "react-chartjs-2";
 
 //  Este componente se encarga de gestionar la
