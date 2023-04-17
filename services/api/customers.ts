@@ -28,7 +28,7 @@ function useCustomers() {
       .then((snapshot) => {
         let data = [] as ICustomer[];
         snapshot.docs.forEach((doc: any) => {
-          data.push({ ...doc.data().customerData, id: doc.id });
+          data.push({ ...doc.data(), id: doc.id });
         });
         setCustomers(data);
       })
