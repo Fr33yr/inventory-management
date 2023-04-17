@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
-import { getInventory } from "../../../services/api";
 import InventoryView from "./inventoryview/InventoryView";
-import {useGetProducts} from '../../../services/api/products'
+import {getDocuments} from '../../../services/api/'
+import {IMessage} from '../../models/index'
+
+
 
 function Inventory() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
 
-  useEffect(() => {
-    setLoading(true);
-    getInventory().then((res) => {
-      setDataSource(res.products);
-      setLoading(false);
-    });
-  }, []);
 
+  useEffect(()=>{
+    getDocuments('products').then((res:any)=>{
+      if(res.data){
+        setDataSource(res.data)
+        console.table(res.data);
+      }else if(res.message){
+        console.log(res.message)
+      }
+    })
+    .catch((err) => console.log(err))
+  },[])
+ 
   return (
     <>
       <InventoryView loading={loading} dataSource={dataSource} />
