@@ -13,7 +13,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../db/config/firebase";
 import { IProvider, IProviderFormData, IMessage } from "../../src/models/data/index";
-import { useState, useEffect } from "react";
 
 const getProviders = async (): Promise<IMessage | IProvider> => {
   try {

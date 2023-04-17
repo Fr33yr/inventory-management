@@ -33,7 +33,7 @@ function useGetProducts() {
       .then((snapshot) => {
         let data = [] as IProduct[];
         snapshot.docs.forEach((doc: any) => {
-          data.push({ ...doc.data().productData, id: doc.id });
+          data.push({ ...doc.data(), id: doc.id });
         });
         setProducts(data);
       })

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getInventory } from "../../../services/api";
 import InventoryView from "./inventoryview/InventoryView";
+import {useGetProducts} from '../../../services/api/products'
 
 function Inventory() {
   const [loading, setLoading] = useState(false);
