@@ -1,5 +1,6 @@
 export interface IProduct {
   id: string;
+  barcode:string;
   name: string;
   category: string;
   price: string;
@@ -8,6 +9,7 @@ export interface IProduct {
 }
 
 export interface IProductForm {
+  barcode:string;
   name: string;
   category: string;
   price: string;
