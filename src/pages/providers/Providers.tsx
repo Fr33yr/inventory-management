@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProviders } from "../../../services/api";
+import { getDocuments } from "../../../services/api/firebase";
 import ProvidersView from './providersview/ProvidersView'
 
 function Providers() {
@@ -8,8 +8,8 @@ function Providers() {
 
   useEffect(() => {
     setLoading(true);
-    getProviders().then((res) => {
-      setDataSource(res.users);
+    getDocuments('providers').then((res:any) => {
+      setDataSource(res.data);
       setLoading(false);
     });
   }, []);

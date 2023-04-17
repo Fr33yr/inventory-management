@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import InventoryView from "./inventoryview/InventoryView";
-import {getDocuments} from '../../../services/api/'
+import {getDocuments} from '../../../services/api/firebase'
 import {IMessage} from '../../models/index'
 
 

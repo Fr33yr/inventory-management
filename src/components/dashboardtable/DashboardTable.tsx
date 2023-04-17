@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOrders } from "../../../services/api";
+import { getDocuments } from "../../../services/api/firebase";
 import { Table, Typography } from "antd";
 import styles from './DashboardTable.module.css'
 
@@ -12,8 +12,8 @@ function DashboardTable() {
 
   useEffect(() => {
     setLoading(true);
-    getOrders().then((res) => {
-      setDataSource(res.products.splice(0, 3));
+    getDocuments('orders').then((res:any) => {
+      setDataSource(res.data);
       setLoading(false);
     });
   }, []);
