@@ -1,10 +1,11 @@
-import { Space, Table, Typography, Button} from "antd";
+import { Space, Table, Typography, Button } from "antd";
 import styles from "../Inventory.module.css";
 import type { ColumnsType, TableProps } from "antd/es/table";
 
 interface Props {
   loading: boolean;
   dataSource: any[];
+  columns: any[];
 }
 
 interface DataType {
@@ -16,64 +17,9 @@ interface DataType {
   category: string;
 }
 
-function InventoryView({ loading, dataSource }: Props) {
-  const columns: ColumnsType<DataType> = [
-    {
-      title: "Name",
-      dataIndex: "title",
-    },
-    {
-      title: "Price",
-      dataIndex: "price",
-      defaultSortOrder: "descend",
-      sorter: (a: any, b: any) => a.price - b.price,
-    },
-    {
-      title: "Brand",
-      dataIndex: "brand",
-      filters: [
-        {
-          text: "Apple",
-          value: "Apple",
-        },
-        {
-          text: "OPPO",
-          value: "OPPO",
-        },
-        {
-          text: "Huawei",
-          value: "Huawei",
-        },
-      ],
-      onFilter: (value: string, record:DataType) => record.brand.indexOf(value) === 0,
-    },
-    {
-      title: "Category",
-      dataIndex: "category",
-      filters: [
-        {
-          text: "smartphone",
-          value: "smartphone",
-        },
-        {
-          text: "laptops",
-          value: "laptops",
-        },
-        {
-          text: "fragrances",
-          value: "fragrances",
-        },
-      ],
-      onFilter: (value: string, record:DataType) => record.category.indexOf(value) === 0,
-    },
-    {
-      title: "Stock",
-      dataIndex: "stock",
-      defaultSortOrder: "descend",
-      sorter: (a: any, b: any) => a.stock - b.stock,
-    },
-  ];
+function InventoryView({ loading, dataSource, columns }: Props) {
 
+  
   const onChange: TableProps<DataType>["onChange"] = (
     pagination,
     filters,
@@ -95,7 +41,8 @@ function InventoryView({ loading, dataSource }: Props) {
           dataSource={dataSource}
           pagination={{
             pageSize: 5,
-          }}></Table>
+          }}
+        ></Table>
       </Space>
     </div>
   );
