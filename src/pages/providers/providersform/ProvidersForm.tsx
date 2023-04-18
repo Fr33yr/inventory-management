@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import {Button} from 'antd'
 import styles from "./ProvidersForm.module.css";
 
 type Props = {
@@ -28,11 +29,11 @@ function ProvidersForm({ onClose }: Props) {
         >
           {({ isSubmitting }) => (
               <Form>
-                <button
+                <Button
               onClick={() => onClose()}
-              type="button"
+              type="primary"
               className={styles.closebtn}
-            >X</button>
+            >X</Button>
               <label htmlFor="name">Name</label>
               <Field type="text" name="name" />
               <label htmlFor="email">Email</label>

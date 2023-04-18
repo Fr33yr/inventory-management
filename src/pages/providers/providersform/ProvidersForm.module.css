@@ -22,12 +22,8 @@
 }
 
 .providersmodal form .closebtn{
-    border: none;
-    border-radius: 2px;
-    color: white;
-    background-color: var(--btn-bg-color);
     max-width: 1.5rem;
-    min-height: 1.5rem;
+    height: 1.5rem;
     padding: 0 .5rem;
     margin-top: 0;
     align-self: self-end;

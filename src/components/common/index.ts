@@ -1,4 +1,5 @@
 export { default as PageContent } from './PageContent/PageContent';
+export { default as LoginBtn } from './buttons/LoginBtn';
 export { default as Footer } from './layout/footer/Footer';
 export { default as Header } from './layout/header/Header';
 export * from './layout';

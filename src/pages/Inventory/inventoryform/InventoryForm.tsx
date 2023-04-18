@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from "formik";
 import { createDocument } from "../../../../services/api/firebase";
 import styles from "./inventoryForm.module.css";
+import { Button } from "antd";
 
 type Props = {
   onClose: Function;
@@ -41,13 +42,13 @@ const InventoryForm = ({ onClose }: Props) => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <button
+            <Button
               onClick={() => onClose()}
-              type="button"
               className={styles.closebtn}
+              type="primary"
             >
               X
-            </button>
+            </Button>
             <label htmlFor="name">Name</label>
             <Field type="text" name="name" />
             <label htmlFor="category">Category</label>
