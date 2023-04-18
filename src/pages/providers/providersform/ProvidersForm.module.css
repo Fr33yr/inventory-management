@@ -13,15 +13,21 @@
     flex-direction: column;
     margin-bottom: 16rem;
     color: black;
-    padding: .5rem 1rem;
-    background-color: wheat;
+    padding: 1rem 1rem;
+    background-color: var(--main-bg-color);
     border: 1px solid gray;
     border-radius: 2px;
     backdrop-filter: opacity(0.6);
 }
 
 .providersmodal form button{
-    margin-top: 2rem;
+    letter-spacing: 1px;
+    margin-top: 1.5rem;
+    padding: .3rem .2rem;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    background-color: var(--btn-bg-color);
 }
 
 .providersmodal form button:hover{

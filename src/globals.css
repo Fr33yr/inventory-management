@@ -16,6 +16,7 @@ body,
   box-sizing: border-box;
   /* === Variables === */
   --main-bg-color: #ebebeb;
+  --btn-bg-color: #1677ff;
 }
 
 main{

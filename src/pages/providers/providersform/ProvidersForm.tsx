@@ -1,5 +1,4 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useState } from "react";
 import styles from "./ProvidersForm.module.css";
 
 type Props = {
@@ -11,7 +10,6 @@ type formValues = {
 };
 
 function ProvidersForm({ onClose }: Props) {
-  const [isSubmitting, setSubmitting] = useState(true);
 
   return (
     <>
