@@ -7,8 +7,7 @@ interface Props {
   loading: boolean;
   dataSource: any[];
   columns: any[];
-  setForm:Function;
-  form:boolean;
+  onOpen:Function;
 }
 
 interface DataType {
@@ -21,11 +20,7 @@ interface DataType {
 }
 
 
-function InventoryView({ loading, dataSource, columns,setForm,form }: Props) {
-
-  const handleToglee=()=>{
-    setForm(!form)
-  }
+function InventoryView({ loading, dataSource, columns, onOpen}: Props) {
 
   const onChange: TableProps<DataType>["onChange"] = (
     pagination,
@@ -41,7 +36,7 @@ function InventoryView({ loading, dataSource, columns,setForm,form }: Props) {
     <div className={styles.inventoryview}>
       <Space size={20} style={{ width: 1000 }} direction="vertical">
         <Typography.Title level={4}>Inventory</Typography.Title>
-        <Button type="primary" onClick={handleToglee}>Add Product</Button>
+        <Button type="primary" onClick={()=>onOpen()}>Add Product</Button>
 
         <Table
           loading={loading}

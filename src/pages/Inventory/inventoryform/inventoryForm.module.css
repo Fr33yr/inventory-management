@@ -1,18 +1,32 @@
-.providersmodal{
+.inventorymodal{
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
+    flex-direction: column;
     backdrop-filter: blur(4px);
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-.providersmodal form{
+.inventorymodal .closebtn{
+    border: none;
+    border-radius: 2px;
+    color: white;
+    background-color: var(--btn-bg-color);
+    max-width: 1.5rem;
+    margin-left: 8.8rem;
+    margin-top: 0;
+}
+
+.inventorymodal .closebtn:hover{
+    cursor: pointer;
+}
+
+.inventorymodal form{
     display: flex;
     flex-direction: column;
-    margin-bottom: 16rem;
     color: black;
     padding: 1rem 1rem;
     background-color: var(--main-bg-color);
@@ -21,7 +35,7 @@
     backdrop-filter: opacity(0.6);
 }
 
-.providersmodal form button{
+.inventorymodal form button{
     letter-spacing: 1px;
     margin-top: 1.5rem;
     padding: .3rem .2rem;
@@ -31,6 +45,6 @@
     background-color: var(--btn-bg-color);
 }
 
-.providersmodal form button:hover{
+.inventorymodal form button:hover{
     cursor: pointer;
 }

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import InventoryView from "./inventoryview/InventoryView";
 import { getDocuments } from "../../../services/api/firebase";
 import type { ColumnsType, TableProps } from "antd/es/table";
-import { IMessage } from "../../models/index";
 import InventoryForm from "./inventoryform/InventoryForm";
 
 interface DataType {
@@ -25,7 +24,7 @@ interface MyFormValues {
 function Inventory() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
-  const [form, setForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     getDocuments("products")
@@ -38,6 +37,14 @@ function Inventory() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const handleFormOpen = () => {
+    setShowForm(true);
+  };
+
+  const handleFormClose = () => {
+    setShowForm(false);
+  };
 
   const columns: ColumnsType<DataType> = [
     {
@@ -82,17 +89,13 @@ function Inventory() {
 
   return (
     <>
-      {form ? (
-        <InventoryForm />
-      ) : (
-        <InventoryView
-          loading={loading}
-          dataSource={dataSource}
-          columns={columns}
-          form={form}
-          setForm={setForm}
-        />
-      )}
+      <InventoryView
+        loading={loading}
+        dataSource={dataSource}
+        columns={columns}
+        onOpen={handleFormOpen}
+      />
+      {showForm && <InventoryForm onClose={handleFormClose} />}
     </>
   );
 }
