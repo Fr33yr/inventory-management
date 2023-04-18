@@ -16,10 +16,12 @@ function ProvidersForm({ onClose }: Props) {
       <div className={styles.providersmodal}>
         <Formik
           initialValues={{ name: "", email: "", phone: "" }}
+          // esta funcion maneja el evento on submit
           onSubmit={(values, { setSubmitting }) => {
+            // delay al hacer submit
             setTimeout(() => {
               console.log(values);
-              onClose();
+              onClose(); // onclose cierra el modal
               setSubmitting(false);
             }, 400);
           }}
