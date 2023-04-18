@@ -27,7 +27,7 @@ function ProvidersForm({ onClose }: Props) {
           }}
         >
           {({ isSubmitting }) => (
-            <Form >
+              <Form>
               <label htmlFor="name">Name</label>
               <Field type="text" name="name" />
               <label htmlFor="email">Email</label>
