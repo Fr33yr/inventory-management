@@ -1,0 +1,23 @@
+.providersmodal{
+    position: fixed;
+    inset: 0;
+    background-color: black;
+    opacity: .35;
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.providersmodal form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16rem;
+    background-color: rgba(245, 222, 179, 0.8);
+    color: red;
+    padding: .5rem 1rem;
+}
+
+.providersmodal form button{
+    margin-top: 2rem;
+}

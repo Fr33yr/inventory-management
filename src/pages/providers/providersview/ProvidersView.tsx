@@ -5,6 +5,7 @@ import styles from "../Providers.module.css";
 interface Props {
   loading: boolean;
   dataSource: any[];
+  onOpen: Function
 }
 
 interface DataType {
@@ -14,7 +15,7 @@ interface DataType {
   phone: number;
 }
 
-function ProvidersView({ loading, dataSource }: Props) {
+function ProvidersView({ loading, dataSource, onOpen}: Props) {
   const columns: ColumnsType<DataType> = [
     {
       title: "First Name",
@@ -63,7 +64,7 @@ function ProvidersView({ loading, dataSource }: Props) {
     <div>
       <Space size={20} className={styles.spaceproviders} direction="vertical">
         <Typography.Title level={4}>Customers</Typography.Title>
-        <Button type="primary">New Provider</Button>
+        <Button type="primary" onClick={()=>onOpen()}>New Provider</Button>
         <Table
           loading={loading}
           columns={columns}
@@ -71,7 +72,8 @@ function ProvidersView({ loading, dataSource }: Props) {
           onChange={onChange}
           pagination={{
             pageSize: 5,
-          }}></Table>
+          }}
+        ></Table>
       </Space>
     </div>
   );
