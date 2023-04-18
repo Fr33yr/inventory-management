@@ -1,6 +1,6 @@
 import { Button, Space, Table, Typography } from "antd";
 import type { ColumnsType, TableProps } from "antd/es/table";
-import styles from '../Orders.module.css'
+import styles from './Orders.module.css'
 
 interface Props {
   loading: boolean;

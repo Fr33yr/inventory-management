@@ -1,5 +1,5 @@
 import { Space, Table, Typography, Button } from "antd";
-import styles from "../Inventory.module.css";
+import styles from "./Inventory.module.css";
 import type { ColumnsType, TableProps } from "antd/es/table";
 
 
