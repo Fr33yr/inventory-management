@@ -28,6 +28,11 @@ function ProvidersForm({ onClose }: Props) {
         >
           {({ isSubmitting }) => (
               <Form>
+                <button
+              onClick={() => onClose()}
+              type="button"
+              className={styles.closebtn}
+            >X</button>
               <label htmlFor="name">Name</label>
               <Field type="text" name="name" />
               <label htmlFor="email">Email</label>

@@ -16,8 +16,10 @@
     color: white;
     background-color: var(--btn-bg-color);
     max-width: 1.5rem;
-    margin-left: 8.8rem;
+    min-height: 1.5rem;
+    padding: 0 .5rem;
     margin-top: 0;
+    align-self: self-end;
 }
 
 .inventorymodal .closebtn:hover{
