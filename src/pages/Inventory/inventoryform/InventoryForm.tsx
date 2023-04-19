@@ -51,7 +51,7 @@ const InventoryForm = ({ onClose }: Props) => {
   return (
     <div className={styles.inventorymodal}>
       <form onSubmit={formik.handleSubmit}>
-        <button className={styles.close}>X</button>
+        <button onClick={()=>onClose()} className={styles.close}>X</button>
         <label htmlFor="name">Nombre:</label>
         <input
           type="text"
