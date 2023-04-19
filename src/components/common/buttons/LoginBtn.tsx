@@ -1,10 +1,6 @@
 import { Button } from "antd";
-import { useContext } from "react";
-import { AuthContext, useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 
-type Props = {
-  onLogin: Function;
-};
 
 function LoginBtn() {
   const { user, loginWithGoogle, logout } = useAuth();

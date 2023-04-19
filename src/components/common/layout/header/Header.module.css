@@ -27,3 +27,11 @@ header .nav span img{
     border-radius: 50%;
     padding: .5rem;
 }
+
+header .logincontainer{
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
