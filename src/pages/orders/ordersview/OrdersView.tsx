@@ -30,13 +30,6 @@ function OrdersView({ loading, dataSource }: Props) {
       render: (value) => <span>${value}</span>,
     },
     {
-      title: "DiscountedPrice",
-      dataIndex: "discountedPrice",
-      sorter: (a, b) => a.discountedPrice - b.discountedPrice,
-      sortDirections: ['descend'],
-      render: (value) => <span>${value}</span>,
-    },
-    {
       title: "Quantity",
       dataIndex: "quantity",
       sorter: (a, b) => a.quantity - b.quantity,
