@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from "formik";
+import { useFormik } from "formik";
 import { createDocument } from "../../../../services/api/firebase";
 import styles from "./inventoryForm.module.css";
 import { Button } from "antd";
@@ -33,50 +33,104 @@ const InventoryForm = ({ onClose }: Props) => {
     brand: Yup.string().required("Brand required"),
     stock: Yup.number().required("Stock required").positive(),
     price: Yup.number().required("Price required").positive(),
-    barcode: Yup.number().required("Barcode required").max(13).positive()
+    barcode: Yup.number()
+      .required("Barcode required")
+      .max(9999999999999, "Barcode must be a maximum of 13 characters"),
   });
 
-  const handleSubmit=(values:MyFormValues)=>{
-    console.log("save Form");    
-    console.log(values);
-    createDocument(values,"products")    
-  }
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema,
+    onSubmit: (values) => {
+      console.log("NEW PRODUCT");
+      console.log(Error);
+      console.log(values);
+    },
+  });
 
   return (
     <div className={styles.inventorymodal}>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-       
-       {({ dirty, isValid }) => (
-          <Form>
-            <Button
-              onClick={() => onClose()}
-              className={styles.closebtn}
-              type="primary"
-            >
-              X
-            </Button>
-            <label htmlFor="name">Name</label>
-            <Field type="text" name="name" />
-            <label htmlFor="category">Category</label>
-            <Field type="text" name="category" />
-            <label htmlFor="brand">Brand</label>
-            <Field type="text" name="brand" />
-            <label htmlFor="stock">Stock</label>
-            <Field type="number" name="stock" />
-            <label htmlFor="price">Price</label>
-            <Field type="number" name="price" />
-            <label htmlFor="barcode">Barcode</label>
-            <Field type="text" name="barcode" />
-            <button type="submit" disabled={!dirty || !isValid}>
-              New Product
-            </button>
-          </Form>
+      <form onSubmit={formik.handleSubmit}>
+        <button className={styles.close}>X</button>
+        <label htmlFor="name">Nombre:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.name}
+        />
+        {formik.touched.name && formik.errors.name && (
+          <div className="error-message">{formik.errors.name}</div>
         )}
-      </Formik>
+
+        <label htmlFor="category">Categoría:</label>
+        <input
+          type="text"
+          id="category"
+          name="category"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.category}
+        />
+        {formik.touched.category && formik.errors.category && (
+          <div>{formik.errors.category}</div>
+        )}
+
+        <label htmlFor="brand">Marca:</label>
+        <input
+          type="text"
+          id="brand"
+          name="brand"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.brand}
+        />
+        {formik.touched.brand && formik.errors.brand && (
+          <div>{formik.errors.brand}</div>
+        )}
+
+        <label htmlFor="stock">Stock:</label>
+        <input
+          type="number"
+          id="stock"
+          name="stock"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.stock}
+        />
+        {formik.touched.stock && formik.errors.stock && (
+          <div>{formik.errors.stock}</div>
+        )}
+
+        <label htmlFor="price">Precio:</label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.price}
+        />
+        {formik.touched.price && formik.errors.price && (
+          <div>{formik.errors.price}</div>
+        )}
+
+        <label htmlFor="barcode">Código de barras:</label>
+        <input
+          type="number"
+          id="barcode"
+          name="barcode"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.barcode}
+        />
+        {formik.touched.barcode && formik.errors.barcode && (
+          <div>{formik.errors.barcode}</div>
+        )}
+        <button type="submit">Add</button>
+      </form>
     </div>
   );
 };
