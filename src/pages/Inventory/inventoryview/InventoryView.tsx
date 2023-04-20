@@ -1,7 +1,7 @@
 import { Space, Table, Typography, Button } from "antd";
 import styles from "./Inventory.module.css";
 import type { ColumnsType, TableProps } from "antd/es/table";
-
+import { TablePaginationPosition  } from "../../orders/createorder/CreateOrder";
 
 interface Props {
   loading: boolean;
@@ -45,6 +45,7 @@ function InventoryView({ loading, dataSource, columns, onOpen}: Props) {
           dataSource={dataSource}
           pagination={{
             pageSize: 5,
+            position: ["bottomCenter" as TablePaginationPosition],
           }}
         ></Table>
       </Space>
