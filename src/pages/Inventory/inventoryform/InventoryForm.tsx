@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import { createDocument } from "../../../../services/api/firebase";
 import styles from "./inventoryForm.module.css";
-import { Button } from "antd";
 import * as Yup from "yup";
 
 type Props = {
@@ -34,24 +33,28 @@ const InventoryForm = ({ onClose }: Props) => {
     stock: Yup.number().required("Stock required").positive(),
     price: Yup.number().required("Price required").positive(),
     barcode: Yup.number()
-      .required("Barcode required")
-      .max(9999999999999, "Barcode must be a maximum of 13 characters"),
+    .required("Barcode required")
+    .min(1111111111111, "Barcode must be a maximum of 13 characters")
+    .max(9999999999999, "Barcode must be a maximum of 13 characters"),
   });
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema,
     onSubmit: (values) => {
-      console.log("NEW PRODUCT");
-      console.log(Error);
-      console.log(values);
-    },
-  });
+      createDocument(values, "products").then(res=>{
+        if(res){
+          onClose()
+        }
+      })}
+    })
 
   return (
     <div className={styles.inventorymodal}>
       <form onSubmit={formik.handleSubmit}>
-        <button onClick={()=>onClose()} className={styles.close}>X</button>
+        <button className={styles.close} onClick={() => onClose()}>
+          X
+        </button>
         <label htmlFor="name">Nombre:</label>
         <input
           type="text"

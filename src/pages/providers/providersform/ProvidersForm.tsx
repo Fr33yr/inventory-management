@@ -1,51 +1,89 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import {Button} from 'antd'
+import { Formik, Form, Field, useFormik } from "formik";
+import { createDocument } from "../../../../services/api/firebase";
+import { Button } from "antd";
 import styles from "./ProvidersForm.module.css";
+import * as Yup from "yup";
 
 type Props = {
   onClose: Function;
 };
 
-type formValues = {
-  values: { name: string; email: string; phone: string };
-};
-
 function ProvidersForm({ onClose }: Props) {
+  interface MyFormValues {
+    name: string;
+    email: string;
+    phone: string;
+  }
+
+  const initialValues: MyFormValues = {
+    name: "",
+    email: "",
+    phone: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Name required"),
+    email: Yup.string().required("Email required").email(),
+    phone: Yup.number().required("Phone required").positive().max(99999999),
+  });
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema,
+    onSubmit: (values) => {
+      createDocument(values, "products").then((res) => {
+        if (res) {
+          onClose();
+        }
+      });
+    },
+  });
 
   return (
     <>
       <div className={styles.providersmodal}>
-        <Formik
-          initialValues={{ name: "", email: "", phone: "" }}
-          // esta funcion maneja el evento on submit
-          onSubmit={(values, { setSubmitting }) => {
-            // delay al hacer submit
-            setTimeout(() => {
-              console.log(values);
-              onClose(); // onclose cierra el modal
-              setSubmitting(false);
-            }, 400);
-          }}
-        >
-          {({ isSubmitting }) => (
-              <Form>
-                <Button
-              onClick={() => onClose()}
-              type="primary"
-              className={styles.closebtn}
-            >X</Button>
-              <label htmlFor="name">Name</label>
-              <Field type="text" name="name" />
-              <label htmlFor="email">Email</label>
-              <Field type="email" name="email" />
-              <label htmlFor="phone">phone</label>
-              <Field type="text" name="phone" />
-              <button type="submit" disabled={isSubmitting}>
-                Submit
-              </button>
-            </Form>
+        <form onSubmit={formik.handleSubmit}>
+          <button className={styles.close} onClick={() => onClose()}>
+            X
+          </button>
+          <label htmlFor="name">Nombre: </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.name}
+          />
+          {formik.touched.name && formik.errors.name && (
+            <div className="error-message">{formik.errors.name}</div>
           )}
-        </Formik>
+          <label htmlFor="email">Email: </label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+          />
+          {formik.touched.email && formik.errors.email && (
+            <div className="error-message">{formik.errors.email}</div>
+          )}
+          <label htmlFor="phone">Phone: </label>
+          <input
+            type="number"
+            id="phone"
+            name="phone"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.phone}
+          />
+          {formik.touched.phone && formik.errors.phone && (
+            <div className="error-message">{formik.errors.phone}</div>
+          )}
+          <button type="submit">Add</button>
+        </form>
       </div>
     </>
   );
