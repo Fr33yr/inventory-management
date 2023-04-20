@@ -9,6 +9,14 @@ interface DataType {
   total: number;
 }
 
+type TablePaginationPosition =
+  | "topLeft"
+  | "topCenter"
+  | "topRight"
+  | "bottomLeft"
+  | "bottomCenter"
+  | "bottomRight";
+
 function OrderPreview() {
   const data: DataType[] = [
     { name: "apple", amount: 1, unitPrice: 5.0, total: 5.0 },
@@ -39,9 +47,9 @@ function OrderPreview() {
       key: "amount",
       render: (_, record) => (
         <Space>
-          <InputNumber defaultValue={record.amount}/>
+          <InputNumber defaultValue={record.amount} />
         </Space>
-      )
+      ),
     },
     {
       title: "unitPrice",
@@ -58,7 +66,10 @@ function OrderPreview() {
     <div>
       <h3>Order detail</h3>
       <div>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={data} pagination={{
+            pageSize: 5,
+            position: ["bottomCenter" as TablePaginationPosition],
+          }}/>
       </div>
     </div>
   );
