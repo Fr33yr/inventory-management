@@ -1,5 +1,7 @@
-import { Space, Table, InputNumber, Button } from "antd";
+import { Space, Table, Button, Input } from "antd";
+import {SearchOutlined} from '@ant-design/icons'
 import type { ColumnsType } from "antd/es/table";
+import styles from './CreateOrder.module.css'
 
 interface DataType {
   name: string;
@@ -43,9 +45,10 @@ function CreateOrder() {
   ]
 
   return (
-    <div>
+    <div className={styles.createorders}>
       <h3>Create order</h3>
-      <div>
+      <div className={styles.content}>
+        <Input prefix={<SearchOutlined />}/>
         <Table columns={columns} dataSource={data}/>
       </div>
     </div>
