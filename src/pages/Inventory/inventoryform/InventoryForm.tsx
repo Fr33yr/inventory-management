@@ -33,21 +33,25 @@ const InventoryForm = ({ onClose }: Props) => {
     stock: Yup.number().required("Stock required").positive(),
     price: Yup.number().required("Price required").positive(),
     barcode: Yup.number()
-    .required("Barcode required")
-    .min(1111111111111, "Barcode must be a maximum of 13 characters")
-    .max(9999999999999, "Barcode must be a maximum of 13 characters"),
+      .required("Barcode required")
+      .min(1111111111111, "Barcode must be a maximum of 13 characters")
+      .max(9999999999999, "Barcode must be a maximum of 13 characters"),
   });
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema,
     onSubmit: (values) => {
-      createDocument(values, "products").then(res=>{
-        if(res){
-          onClose()
+      createDocument(values, "products").then((res) => {
+        if (res) {
+          onClose();
         }
-      })}
-    })
+      });
+    },
+  });
+
+
+
 
   return (
     <div className={styles.inventorymodal}>
