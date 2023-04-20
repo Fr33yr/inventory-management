@@ -1,73 +1,60 @@
-import { Button, Space, Table, Typography } from "antd";
-import type { ColumnsType, TableProps } from "antd/es/table";
-import styles from './Orders.module.css'
-
-interface Props {
-  loading: boolean;
-  dataSource: any[];
-}
+import { Space, Table } from "antd";
+import type { ColumnsType } from "antd/es/table";
 
 interface DataType {
-  key: React.Key;
-  title: string;
-  price: number;
-  discountedPrice: number;
-  quantity: number;
+  name: string;
+  amount: number;
+  unitPrice: number;
   total: number;
 }
 
-function OrdersView({ loading, dataSource }: Props) {
+function OrdersView() {
+  const data: DataType[] = [
+    { name: "apple", amount: 3, unitPrice: 5.0, total: 15.0 },
+    { name: "banana", amount: 3, unitPrice: 5.0, total: 15.0 },
+    { name: "peach", amount: 3, unitPrice: 5.0, total: 15.0 },
+    { name: "grapes", amount: 3, unitPrice: 5.0, total: 15.0 },
+  ];
+
   const columns: ColumnsType<DataType> = [
     {
-      title: "Title",
-      dataIndex: "title",
+      title: 'delete',
+      key: 'delete',
+      render: (_, record) => (
+        <Space size={"middle"}>
+          <a >del</a>
+        </Space>
+      )
     },
     {
-      title: "Price",
-      dataIndex: "price",
-      sorter: (a, b) => a.price - b.price,
-      sortDirections: ['descend'],
-      render: (value) => <span>${value}</span>,
+      title: "name",
+      dataIndex: "name",
+      key: "name"
     },
     {
-      title: "Quantity",
-      dataIndex: "quantity",
-      sorter: (a, b) => a.quantity - b.quantity,
-      sortDirections: ['descend'],
+      title: "amount",
+      dataIndex: "amount",
+      key: "amount"
     },
     {
-      title: "Total",
+      title: "unitPrice",
+      dataIndex: "unitPrice",
+      key: "unitPrice"
+    },
+    {
+      title: "total",
       dataIndex: "total",
-      sorter: (a, b) => a.total - b.total,
-      sortDirections: ['descend'],
+      key: "total"
     }
   ]
 
-  const onChange: TableProps<DataType>["onChange"] = (
-    pagination,
-    filters,
-    sorter,
-    extra
-  ) => {
-    console.log("params", pagination, filters, sorter, extra);
-  };
-
 
   return (
-    <div className={styles.ordersview}>
-      <Space size={20} direction="vertical">
-        <Typography.Title level={4}>Orders</Typography.Title>
-        <Button type="primary">New Order</Button>
-        <Table
-          loading={loading}
-          columns={columns}
-          dataSource={dataSource}
-          onChange={onChange}
-          pagination={{
-            pageSize: 5,
-          }}
-        ></Table>
-      </Space>
+    <div>
+      <h3>Order detail</h3>
+      <div>
+        <Table columns={columns} dataSource={data}/>
+      </div>
     </div>
   );
 }

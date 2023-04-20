@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getInventory, getOrders } from "../../../services/api/dummy";
 import OrdersView from "./ordersview/OrdersView";
+import CreateOrder from "./createorder/CreateOrder";
 
 function Orders() {
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,8 @@ function Orders() {
 
   return (
     <>
-      <OrdersView loading={loading} dataSource={dataSource} />
+     <CreateOrder/>
+      <OrdersView />
     </>
   );
 }
