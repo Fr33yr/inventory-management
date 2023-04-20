@@ -24,14 +24,14 @@ function ProvidersForm({ onClose }: Props) {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name required"),
     email: Yup.string().required("Email required").email(),
-    phone: Yup.number().required("Phone required").positive().max(99999999),
+    phone: Yup.number().required("Phone required").positive().max(999999999),
   });
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema,
     onSubmit: (values) => {
-      createDocument(values, "products").then((res) => {
+      createDocument(values, "providers").then((res) => {
         if (res) {
           onClose();
         }
