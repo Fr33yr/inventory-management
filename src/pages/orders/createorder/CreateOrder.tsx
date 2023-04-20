@@ -9,7 +9,7 @@ interface DataType {
   unitPrice: number;
 }
 
-type TablePaginationPosition =
+export type TablePaginationPosition =
   | "topLeft"
   | "topCenter"
   | "topRight"
