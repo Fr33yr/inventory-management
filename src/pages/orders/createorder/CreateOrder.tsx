@@ -67,6 +67,7 @@ function CreateOrder() {
             position: ["bottomCenter" as TablePaginationPosition],
           }}
           scroll={{ y: 200 }}
+          size='small'
         />
       </div>
     </div>
