@@ -1,4 +1,4 @@
-import { Space, Table, InputNumber, Checkbox } from "antd";
+import { Space, Table, InputNumber, Button } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 interface DataType {
@@ -21,7 +21,7 @@ function CreateOrder() {
       key: 'delete',
       render: (_, record) => (
         <Space size={"middle"}>
-          <Checkbox />
+          <Button onClick={()=>console.log("plus")}>+</Button>
         </Space>
       )
     },
@@ -33,11 +33,7 @@ function CreateOrder() {
     {
       title: "amount",
       key: "amount",
-      render: (_, record) => (
-        <Space>
-          <InputNumber defaultValue={record.amount}/>
-        </Space>
-      )
+      dataIndex: "amount"
     },
     {
       title: "unitPrice",
