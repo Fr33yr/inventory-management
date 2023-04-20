@@ -69,7 +69,8 @@ function OrderPreview() {
         <Table columns={columns} dataSource={data} pagination={{
             pageSize: 5,
             position: ["bottomCenter" as TablePaginationPosition],
-          }}/>
+          }}
+          scroll={{ y: 200 }}/>
       </div>
     </div>
   );
