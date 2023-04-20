@@ -1,6 +1,7 @@
 import { Button, Space, Table, InputNumber } from "antd";
 import { DeleteFilled } from "@ant-design/icons";
 import type { ColumnsType } from "antd/es/table";
+import styles from "./OrderPreview.module.css";
 
 interface DataType {
   name: string;
@@ -62,16 +63,23 @@ function OrderPreview() {
       key: "total",
     },
   ];
+
   return (
-    <div>
+    <div className={styles.orderpreview}>
       <h3>Order detail</h3>
-      <div>
-        <Table columns={columns} dataSource={data} pagination={{
-            pageSize: 5,
-            position: ["bottomCenter" as TablePaginationPosition],
-          }}
-          scroll={{ y: 200 }}/>
-      </div>
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={{
+          pageSize: 5,
+          position: ["bottomCenter" as TablePaginationPosition],
+        }}
+        scroll={{ y: 220 }}
+        size='small'
+      />
+      <Button type="primary" className={styles.paybtn}>
+        Pay
+      </Button>
     </div>
   );
 }
