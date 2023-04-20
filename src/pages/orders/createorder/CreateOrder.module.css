@@ -1,3 +1,7 @@
-.createorders .content table{
+.createorders{
+    margin: 0 5rem;
+}
+
+.createorders .content .textinput{
     margin: .4rem 0;
 }
