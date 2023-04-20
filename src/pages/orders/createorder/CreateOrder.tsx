@@ -33,7 +33,7 @@ function CreateOrder() {
       key: "name"
     },
     {
-      title: "amount",
+      title: "stock",
       key: "amount",
       dataIndex: "amount"
     },
