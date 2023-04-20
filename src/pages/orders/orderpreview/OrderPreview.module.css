@@ -1,11 +1,10 @@
-.createorders{
+.orderpreview{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 5rem;
 }
 
-.createorders .content .textinput{
-    margin: .4rem 0;
+.orderpreview .paybtn{
+    min-width: 9rem;
 }
