@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProduct } from "models";
 import { OrderAdapter } from "../../utils/orderAdapter";
 
-interface OrderProduct {
+export interface OrderProduct {
   name: string;
   amount: number;
   unitPrice: number;
@@ -61,9 +61,8 @@ export const orderSlice = createSlice({
       };
     },
     removeItem: (state, action) => {
-      let { id } = action.payload;
       let filteredItems = state.products.filter(
-        (ele: OrderProduct) => ele.productId !== id
+        (ele: OrderProduct) => ele.productId !== action.payload
       );
       return {
         ...state,
