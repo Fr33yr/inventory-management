@@ -3,7 +3,8 @@ import { DeleteFilled } from "@ant-design/icons";
 import type { ColumnsType } from "antd/es/table";
 import styles from "./OrderPreview.module.css";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { OrderProduct, removeItem } from "../../../redux/slices/orderSlice";
+import { removeItem } from "../../../redux/slices/orderSlice";
+import { OrderProduct } from "models";
 
 interface DataType {
   name: string;
@@ -21,7 +22,7 @@ type TablePaginationPosition =
   | "bottomRight";
 
 function OrderPreview() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const { products, total } = useAppSelector((state) => state.orders);
 
   const columns: ColumnsType<OrderProduct> = [
@@ -30,7 +31,7 @@ function OrderPreview() {
       key: "delete",
       render: (_, record) => (
         <Space size={"middle"}>
-          <Button onClick={()=>dispatch(removeItem(record.productId))}>
+          <Button onClick={() => dispatch(removeItem(record.productId))}>
             <DeleteFilled />
           </Button>
         </Space>
@@ -46,7 +47,11 @@ function OrderPreview() {
       key: "amount",
       render: (_, record) => (
         <Space>
-          <InputNumber defaultValue={record.amount} />
+          <InputNumber
+            defaultValue={record.amount}
+            max={record.stock}
+            min={0}
+          />
         </Space>
       ),
     },
