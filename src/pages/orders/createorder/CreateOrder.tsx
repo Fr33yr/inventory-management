@@ -5,6 +5,7 @@ import styles from "./CreateOrder.module.css";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { addItem } from "../../../redux/slices/orderSlice";
 import { IProduct } from "models";
+import { useEffect, useState } from "react";
 
 interface DataType {
   name: string;
@@ -23,7 +24,7 @@ export type TablePaginationPosition =
 function CreateOrder() {
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.orders);
-
+  const { Search } = Input;
   // export interface IProduct {
   //   id: string;
   //   barcode:string;
@@ -33,45 +34,6 @@ function CreateOrder() {
   //   quantity: string;
   //   brand: string
   // }
-
-  const data: IProduct[] = [
-    {
-      name: "apple",
-      quantity: 3,
-      price: 5.0,
-      id: "asdal109u",
-      brand: "coke",
-      category: "drink",
-      barcode: "",
-    },
-    {
-      name: "banana",
-      quantity: 3,
-      price: 5.0,
-      id: "asdax109u",
-      brand: "coke",
-      category: "drink",
-      barcode: "",
-    },
-    {
-      name: "peach",
-      quantity: 3,
-      price: 5.0,
-      id: "asdad1z9u",
-      brand: "coke",
-      category: "drink",
-      barcode: "",
-    },
-    {
-      name: "grapes",
-      quantity: 3,
-      price: 5.0,
-      id: "asdap109u",
-      brand: "coke",
-      category: "drink",
-      barcode: "",
-    },
-  ];
 
   const columns: ColumnsType<IProduct> = [
     {
@@ -83,8 +45,7 @@ function CreateOrder() {
             onClick={() => dispatch(addItem(record))}
             disabled={
               products.find((obj) => obj.productId === record.id) ? true : false
-            }
-          >
+            }>
             +
           </Button>
         </Space>
@@ -106,13 +67,67 @@ function CreateOrder() {
       key: "price",
     },
   ];
+  const [data, setData] = useState<IProduct[]>([]);
+  useEffect(() => {
+    setData([
+      {
+        name: "apple",
+        quantity: 3,
+        price: 5.0,
+        id: "asdal109u",
+        brand: "coke",
+        category: "drink",
+        barcode: "",
+      },
+      {
+        name: "banana",
+        quantity: 3,
+        price: 5.0,
+        id: "asdax109u",
+        brand: "coke",
+        category: "drink",
+        barcode: "",
+      },
+      {
+        name: "peach",
+        quantity: 3,
+        price: 5.0,
+        id: "asdad1z9u",
+        brand: "coke",
+        category: "drink",
+        barcode: "",
+      },
+      {
+        name: "grapes",
+        quantity: 3,
+        price: 5.0,
+        id: "asdap109u",
+        brand: "coke",
+        category: "drink",
+        barcode: "",
+      },
+    ]);
+  }, []);
+
+  const handleSearch = (value: string) => {
+    const filteredData = data.filter((product) =>
+      product.name === value
+        ? product.name.toLowerCase().includes(value.toLowerCase())
+        : null
+    );
+    !value ? data : setData(filteredData);
+  };
 
   return (
     <div className={styles.createorders}>
       <h3>Create order</h3>
       <div className={styles.content}>
         <div className={styles.textinput}>
-          <Input prefix={<SearchOutlined />} />
+          <Search
+            placeholder="Write name product"
+            onSearch={handleSearch}
+            allowClear
+          />
         </div>
         <Table
           columns={columns}
