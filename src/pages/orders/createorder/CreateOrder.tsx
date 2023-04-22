@@ -2,7 +2,7 @@ import { Space, Table, Button, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import type { ColumnsType, TablePaginationConfig } from "antd/es/table";
 import styles from "./CreateOrder.module.css";
-import { useAppDispatch } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { addItem } from "../../../redux/slices/orderSlice";
 import { IProduct } from "models";
 
@@ -22,6 +22,7 @@ export type TablePaginationPosition =
 
 function CreateOrder() {
   const dispatch = useAppDispatch();
+  const { products } = useAppSelector((state) => state.orders);
 
   // export interface IProduct {
   //   id: string;
@@ -34,10 +35,42 @@ function CreateOrder() {
   // }
 
   const data: IProduct[] = [
-    { name: "apple", quantity: 3, price: 5.0, id: "asdal109u", brand: "coke", category: "drink", barcode: "" },
-    { name: "banana", quantity: 3, price: 5.0, id: "asdax109u", brand: "coke", category: "drink", barcode: "" },
-    { name: "peach", quantity: 3, price: 5.0, id: "asdad1z9u", brand: "coke", category: "drink", barcode: "" },
-    { name: "grapes", quantity: 3, price: 5.0, id: "asdap109u", brand: "coke", category: "drink", barcode: "" },
+    {
+      name: "apple",
+      quantity: 3,
+      price: 5.0,
+      id: "asdal109u",
+      brand: "coke",
+      category: "drink",
+      barcode: "",
+    },
+    {
+      name: "banana",
+      quantity: 3,
+      price: 5.0,
+      id: "asdax109u",
+      brand: "coke",
+      category: "drink",
+      barcode: "",
+    },
+    {
+      name: "peach",
+      quantity: 3,
+      price: 5.0,
+      id: "asdad1z9u",
+      brand: "coke",
+      category: "drink",
+      barcode: "",
+    },
+    {
+      name: "grapes",
+      quantity: 3,
+      price: 5.0,
+      id: "asdap109u",
+      brand: "coke",
+      category: "drink",
+      barcode: "",
+    },
   ];
 
   const columns: ColumnsType<IProduct> = [
@@ -46,7 +79,14 @@ function CreateOrder() {
       key: "delete",
       render: (_, record: IProduct) => (
         <Space size={"middle"}>
-          <Button onClick={() => dispatch(addItem(record))}>+</Button>
+          <Button
+            onClick={() => dispatch(addItem(record))}
+            disabled={
+              products.find((obj) => obj.productId === record.id) ? true : false
+            }
+          >
+            +
+          </Button>
         </Space>
       ),
     },
