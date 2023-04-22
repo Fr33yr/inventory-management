@@ -2,7 +2,8 @@ import { Button, Space, Table, InputNumber } from "antd";
 import { DeleteFilled } from "@ant-design/icons";
 import type { ColumnsType } from "antd/es/table";
 import styles from "./OrderPreview.module.css";
-import {useAppDispatch, useAppSelector} from '../../../hooks'
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { OrderProduct, removeItem } from "../../../redux/slices/orderSlice";
 
 interface DataType {
   name: string;
@@ -20,23 +21,16 @@ type TablePaginationPosition =
   | "bottomRight";
 
 function OrderPreview() {
+  const dispatch = useAppDispatch()
+  const { products, total } = useAppSelector((state) => state.orders);
 
-  const {products, total} = useAppSelector((state) => state.orders)
-
-  const data: DataType[] = [
-    { name: "apple", amount: 1, unitPrice: 5.0, total: 5.0 },
-    { name: "banana", amount: 1, unitPrice: 5.0, total: 5.0 },
-    { name: "peach", amount: 1, unitPrice: 5.0, total: 5.0 },
-    { name: "grapes", amount: 1, unitPrice: 5.0, total: 5.0 },
-  ];
-
-  const columns: ColumnsType<DataType> = [
+  const columns: ColumnsType<OrderProduct> = [
     {
       title: "delete",
       key: "delete",
       render: (_, record) => (
         <Space size={"middle"}>
-          <Button>
+          <Button onClick={()=>dispatch(removeItem(record.productId))}>
             <DeleteFilled />
           </Button>
         </Space>
@@ -73,13 +67,13 @@ function OrderPreview() {
       <h3>Order detail</h3>
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={products}
         pagination={{
           pageSize: 5,
           position: ["bottomCenter" as TablePaginationPosition],
         }}
         scroll={{ y: 220 }}
-        size='small'
+        size="small"
       />
       <Button type="primary" className={styles.paybtn}>
         Pay
