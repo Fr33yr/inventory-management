@@ -2,6 +2,7 @@ import { Button, Space, Table, InputNumber } from "antd";
 import { DeleteFilled } from "@ant-design/icons";
 import type { ColumnsType } from "antd/es/table";
 import styles from "./OrderPreview.module.css";
+import {useAppDispatch, useAppSelector} from '../../../hooks'
 
 interface DataType {
   name: string;
@@ -19,6 +20,9 @@ type TablePaginationPosition =
   | "bottomRight";
 
 function OrderPreview() {
+
+  const {products, total} = useAppSelector((state) => state.orders)
+
   const data: DataType[] = [
     { name: "apple", amount: 1, unitPrice: 5.0, total: 5.0 },
     { name: "banana", amount: 1, unitPrice: 5.0, total: 5.0 },
