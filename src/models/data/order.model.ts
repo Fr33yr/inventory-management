@@ -1,12 +1,15 @@
-import {IProduct} from './index'
-
-export interface IOrder{
-    id: string,
-    products: IProduct[]
-    userId: string
+export interface OrderProduct {
+  name: string;
+  amount: number;
+  stock: number
+  unitPrice: number;
+  subTotal: number;
+  productId: string;
+  brand: string;
+  category: string;
 }
 
-export interface IOrderFormData {
-    products: IProduct[]
-    userId: string
+export interface IOrder {
+  products: OrderProduct[];
+  total: number
 }
