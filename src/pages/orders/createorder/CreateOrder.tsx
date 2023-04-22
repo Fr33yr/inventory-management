@@ -98,12 +98,12 @@ function CreateOrder() {
     {
       title: "stock",
       key: "amount",
-      dataIndex: "amount",
+      dataIndex: "quantity",
     },
     {
       title: "unitPrice",
-      dataIndex: "unitPrice",
-      key: "unitPrice",
+      dataIndex: "price",
+      key: "price",
     },
   ];
 

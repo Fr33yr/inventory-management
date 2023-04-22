@@ -22,6 +22,10 @@ export class OrderAdapter {
     return 1; // Always set to 1
   }
 
+  getStock(){
+    return this.product.quantity
+  }
+
   getUnitPrice() {
     return this.product.price;
   }

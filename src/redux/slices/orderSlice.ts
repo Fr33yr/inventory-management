@@ -1,21 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IProduct } from "models";
+import { IProduct, OrderProduct } from "models";
 import { OrderAdapter } from "../../utils/orderAdapter";
 
-export interface OrderProduct {
-  name: string;
-  amount: number;
-  unitPrice: number;
-  subTotal: number;
-  productId: string;
-  brand: string;
-  category: string;
-}
-
-interface IOrder {
-  products: OrderProduct[];
-  total: number;
-}
 
 export interface IOrderState {
   products: OrderProduct[];
@@ -38,6 +24,7 @@ export const orderSlice = createSlice({
         brand: orderAdapter.getBrand(),
         category: orderAdapter.getCategory(),
         amount: orderAdapter.getAmount(),
+        stock: orderAdapter.getStock(),
         unitPrice: orderAdapter.getUnitPrice(),
         subTotal: orderAdapter.getSubTotal(),
         productId: orderAdapter.getProductId(),
