@@ -3,9 +3,10 @@ export interface IProduct {
   barcode:string;
   name: string;
   category: string;
-  price: string;
+  price: number;
   quantity: string;
   image: string;
+  brand: string
 }
 
 export interface IProductForm {
