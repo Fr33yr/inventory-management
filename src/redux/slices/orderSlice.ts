@@ -53,7 +53,7 @@ export const orderSlice = createSlice({
         ...state,
         products: state.products.map((obj: OrderProduct) => {
           if (obj.productId === id) {
-            return { ...obj, amount: amount };
+            return { ...obj, amount: amount, subTotal: amount * obj.unitPrice};
           } else {
             return obj;
           }
