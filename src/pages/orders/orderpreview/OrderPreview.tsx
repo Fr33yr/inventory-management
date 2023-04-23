@@ -3,7 +3,7 @@ import { DeleteFilled } from "@ant-design/icons";
 import type { ColumnsType } from "antd/es/table";
 import styles from "./OrderPreview.module.css";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { removeItem } from "../../../redux/slices/orderSlice";
+import { removeItem, setTotal, setAmount } from "../../../redux/slices/orderSlice";
 import { OrderProduct } from "models";
 
 interface DataType {
@@ -20,6 +20,7 @@ type TablePaginationPosition =
   | "bottomLeft"
   | "bottomCenter"
   | "bottomRight";
+
 
 function OrderPreview() {
   const dispatch = useAppDispatch();
@@ -45,12 +46,13 @@ function OrderPreview() {
     {
       title: "amount",
       key: "amount",
-      render: (_, record) => (
+      render: (_, record:OrderProduct) => (
         <Space>
           <InputNumber
             defaultValue={record.amount}
             max={record.stock}
             min={0}
+            onChange={(value:any)=>handleChange(value, record)}
           />
         </Space>
       ),
@@ -61,11 +63,20 @@ function OrderPreview() {
       key: "unitPrice",
     },
     {
-      title: "total",
-      dataIndex: "total",
-      key: "total",
+      title: "subTotal",
+      dataIndex: "subTotal",
+      key: "subTotal",
     },
   ];
+ 
+  const handleChange = (value:number, record:OrderProduct) => {
+    dispatch(setAmount({unitPrice: record.unitPrice, productId: record.productId, amount: value}))
+    dispatch(setTotal())
+  }
+
+  const handlePay = () => {
+
+  }
 
   return (
     <div className={styles.orderpreview}>
@@ -80,7 +91,8 @@ function OrderPreview() {
         scroll={{ y: 220 }}
         size="small"
       />
-      <Button type="primary" className={styles.paybtn}>
+      <p>Total: {total}</p>
+      <Button type="primary" className={styles.paybtn} >
         Pay
       </Button>
     </div>
