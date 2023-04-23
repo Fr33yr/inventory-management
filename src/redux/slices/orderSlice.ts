@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProduct, OrderProduct } from "models";
 import { OrderAdapter } from "../../utils/orderAdapter";
 
-
 export interface IOrderState {
   products: OrderProduct[];
   total: number;
@@ -35,12 +34,12 @@ export const orderSlice = createSlice({
       };
     },
     setAmount: (state, action) => {
-      let { id, amount } = action.payload;
+      let { productId, amount, unitPrice } = action.payload;
       return {
         ...state,
         products: state.products.map((obj: OrderProduct) => {
-          if (obj.productId === id) {
-            return { ...obj, amount: amount, subTotal: amount * obj.unitPrice};
+          if (obj.productId === productId) {
+            return { ...obj, amount: amount, subTotal: amount * obj.unitPrice };
           } else {
             return obj;
           }
@@ -56,10 +55,10 @@ export const orderSlice = createSlice({
         products: filteredItems,
       };
     },
-    setTotal: (state, action) => {
+    setTotal: (state) => {
       return {
         ...state,
-        total: action.payload,
+        total: state.products.reduce((acc, curr) => acc + curr.subTotal, 0),
       };
     },
     resetOrder: (state, action) => {
