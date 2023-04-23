@@ -1,9 +1,8 @@
 import { Space, Table, Button, Input } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-import type { ColumnsType, TablePaginationConfig } from "antd/es/table";
+import type { ColumnsType } from "antd/es/table";
 import styles from "./CreateOrder.module.css";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { addItem } from "../../../redux/slices/orderSlice";
+import { addItem, setTotal } from "../../../redux/slices/orderSlice";
 import { IProduct } from "models";
 import { useEffect, useState } from "react";
 
@@ -33,10 +32,11 @@ function CreateOrder() {
       render: (_, record: IProduct) => (
         <Space size={"middle"}>
           <Button
-            onClick={() => dispatch(addItem(record))}
+            onClick={() => handleAddProduct(record)}
             disabled={
               products.find((obj) => obj.productId === record.id) ? true : false
-            }>
+            }
+          >
             +
           </Button>
         </Space>
@@ -107,6 +107,11 @@ function CreateOrder() {
         : null
     );
     !value ? data : setData(filteredData);
+  };
+
+  const handleAddProduct = (record: IProduct) => {
+    dispatch(addItem(record));
+    dispatch(setTotal());
   };
 
   return (

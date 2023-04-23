@@ -32,7 +32,7 @@ function OrderPreview() {
       key: "delete",
       render: (_, record) => (
         <Space size={"middle"}>
-          <Button onClick={() => dispatch(removeItem(record.productId))}>
+          <Button onClick={() => handleDelete(record)}>
             <DeleteFilled />
           </Button>
         </Space>
@@ -71,6 +71,11 @@ function OrderPreview() {
  
   const handleChange = (value:number, record:OrderProduct) => {
     dispatch(setAmount({unitPrice: record.unitPrice, productId: record.productId, amount: value}))
+    dispatch(setTotal())
+  }
+
+  const handleDelete = (record:OrderProduct) => {
+    dispatch(removeItem(record.productId))
     dispatch(setTotal())
   }
 
