@@ -25,15 +25,6 @@ function CreateOrder() {
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.orders);
   const { Search } = Input;
-  // export interface IProduct {
-  //   id: string;
-  //   barcode:string;
-  //   name: string;
-  //   category: string;
-  //   price: number;
-  //   quantity: string;
-  //   brand: string
-  // }
 
   const columns: ColumnsType<IProduct> = [
     {
