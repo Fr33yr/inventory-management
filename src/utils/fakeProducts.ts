@@ -1,0 +1,38 @@
+export const productsData = [
+  {
+    name: "apple",
+    quantity: 3,
+    price: 5.0,
+    id: "asdal109u",
+    brand: "coke",
+    category: "drink",
+    barcode: "",
+  },
+  {
+    name: "banana",
+    quantity: 3,
+    price: 5.0,
+    id: "asdax109u",
+    brand: "coke",
+    category: "drink",
+    barcode: "",
+  },
+  {
+    name: "peach",
+    quantity: 3,
+    price: 5.0,
+    id: "asdad1z9u",
+    brand: "coke",
+    category: "drink",
+    barcode: "",
+  },
+  {
+    name: "grapes",
+    quantity: 3,
+    price: 5.0,
+    id: "asdap109u",
+    brand: "coke",
+    category: "drink",
+    barcode: "",
+  },
+];

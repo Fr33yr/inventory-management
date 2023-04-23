@@ -1,9 +1,10 @@
-import { Space, Table, Button, Input } from "antd";
+import { Space, Button, Input } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { addItem, setTotal } from "../../../redux/slices/orderSlice";
 import { IProduct } from "models";
 import { useEffect, useState } from "react";
+import { productsData } from "../../../utils/fakeProducts";
 
 export default function useViewModel() {
   const dispatch = useAppDispatch();
@@ -12,44 +13,7 @@ export default function useViewModel() {
 
   const [data, setData] = useState<IProduct[]>([]);
   useEffect(() => {
-    setData([
-      {
-        name: "apple",
-        quantity: 3,
-        price: 5.0,
-        id: "asdal109u",
-        brand: "coke",
-        category: "drink",
-        barcode: "",
-      },
-      {
-        name: "banana",
-        quantity: 3,
-        price: 5.0,
-        id: "asdax109u",
-        brand: "coke",
-        category: "drink",
-        barcode: "",
-      },
-      {
-        name: "peach",
-        quantity: 3,
-        price: 5.0,
-        id: "asdad1z9u",
-        brand: "coke",
-        category: "drink",
-        barcode: "",
-      },
-      {
-        name: "grapes",
-        quantity: 3,
-        price: 5.0,
-        id: "asdap109u",
-        brand: "coke",
-        category: "drink",
-        barcode: "",
-      },
-    ]);
+    setData(productsData);
   }, []);
 
   const columns: ColumnsType<IProduct> = [
@@ -86,14 +50,17 @@ export default function useViewModel() {
     },
   ];
 
-  
   const handleSearch = (value: string) => {
-    const filteredData = data.filter((product) =>
-      product.name === value
-        ? product.name.toLowerCase().includes(value.toLowerCase())
-        : null
-    );
-    !value ? data : setData(filteredData);
+    if (!value || value === "") {
+      setData(productsData);
+    } else {
+      const filteredData = data.filter((product) =>
+        product.name === value
+          ? product.name.toLowerCase().includes(value.toLowerCase())
+          : null
+      );
+      setData(filteredData);
+    }
   };
 
   const handleAddProduct = (record: IProduct) => {
@@ -107,6 +74,6 @@ export default function useViewModel() {
     columns,
     products,
     Search,
-    data
-  }
+    data,
+  };
 }
