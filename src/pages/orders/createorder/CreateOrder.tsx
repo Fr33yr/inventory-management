@@ -1,7 +1,5 @@
-import { Table, Input } from "antd";
+import { Table } from "antd";
 import styles from "./CreateOrder.module.css";
-import { IProduct } from "models";
-import { useEffect, useState } from "react";
 import useViewModel from "./ViewModel";
 
 
