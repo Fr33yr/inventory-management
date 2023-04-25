@@ -5,7 +5,8 @@ export interface IProduct {
   category: string;
   price: number;
   quantity: number;
-  brand: string
+  brand: string;
+  expDate:Date;
 }
 
 export interface IProductForm {
