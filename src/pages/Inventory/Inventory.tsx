@@ -56,7 +56,6 @@ function Inventory() {
     {
       title: "Price",
       dataIndex: "price",
-      defaultSortOrder: "descend",
       sorter: (a: any, b: any) => a.price - b.price,
     },
     {
