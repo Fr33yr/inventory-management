@@ -2,10 +2,15 @@ import { BellFilled, MailOutlined } from "@ant-design/icons";
 import styles from "./Header.module.css";
 import { Image, LoginBtn } from "../../index";
 import { useAuth } from "../../../../context/AuthContext";
+import {Notification} from '../../../notification/Notification'
 
 function Header() {
 
   const {user} = useAuth()
+
+  const handleClick=()=>{
+    return <Notification/>
+  }
 
   return (
     <header className={styles.header}>
@@ -21,7 +26,7 @@ function Header() {
           <LoginBtn />
         </div>
         <div className={styles.navicons}>
-          <BellFilled className={styles.icon} />
+          <BellFilled className={styles.icon} onClick={()=>handleClick()}/>
           <MailOutlined className={styles.icon} />
         </div>
       </nav>
