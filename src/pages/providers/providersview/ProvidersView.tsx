@@ -87,7 +87,7 @@ function ProvidersView({ loading, dataSource, onOpen }: Props) {
   return (
     <div>
       <Space size={20} className={styles.spaceproviders} direction="vertical">
-        <Typography.Title level={4}>Customers</Typography.Title>
+        <Typography.Title level={4}>Providers</Typography.Title>
         <Button type="primary" onClick={() => onOpen()}>
           New Provider
         </Button>

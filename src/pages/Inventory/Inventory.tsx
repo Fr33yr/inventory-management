@@ -3,7 +3,7 @@ import InventoryView from "./inventoryview/InventoryView";
 import { getDocuments } from "../../../services/api/firebase";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import InventoryForm from "./inventoryform/InventoryForm";
-import * as XLSX from "xlsx";
+
 import { Button } from "antd";
 
 interface DataType {
@@ -89,21 +89,8 @@ function Inventory() {
     },
   ];
 
-  const handleExcel = () => {
-    // Convertimos los datos a una hoja de cálculo en formato Excel
-    const headers = ["id","barcode","name", "price", "brand", "category", "stock"];
-    const sheet = XLSX.utils.json_to_sheet(dataSource, { header: headers });
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, sheet, "Datos");
-
-    // Descargamos el archivo Excel
-    const fileName = "datos.xlsx";
-    XLSX.writeFile(workbook, fileName);
-  };
-
   return (
     <>
-      <Button type="primary" onClick={handleExcel}>Descargar Excel</Button>
       <InventoryView
         loading={loading}
         dataSource={dataSource}

@@ -1,3 +1,17 @@
 .inventoryview{
-    margin-right: 15vw;
+    margin-right: 200px;
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.excel{
+    margin-right: 10px;    
+}
+
+.add{    
+    margin-left: 1rem;
 }
