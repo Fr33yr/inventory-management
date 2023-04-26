@@ -30,6 +30,7 @@ const InventoryForm = ({ onClose }: Props) => {
     name: Yup.string().required("Name required"),
     category: Yup.string().required("Category required"),
     brand: Yup.string().required("Brand required"),
+    expirationDate: Yup.date().required("Date required"),
     stock: Yup.number().required("Stock required").positive(),
     price: Yup.number().required("Price required").positive(),
     barcode: Yup.number()
@@ -97,6 +98,15 @@ const InventoryForm = ({ onClose }: Props) => {
         {formik.touched.brand && formik.errors.brand && (
           <div>{formik.errors.brand}</div>
         )}
+
+        <label htmlFor="expiracion">Expiracion</label>
+          <input type="date"
+          id="expirationDate"
+          name="expirationDate"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.brand}
+          />
 
         <label htmlFor="stock">Stock:</label>
         <input

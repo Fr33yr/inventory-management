@@ -86,6 +86,11 @@ function Inventory() {
       defaultSortOrder: "descend",
       sorter: (a: any, b: any) => a.stock - b.stock,
     },
+    {
+      title: "Expiration",
+      dataIndex: "expirationDate",
+      key: "expirationDate",
+    },
   ];
 
   return (
