@@ -3,14 +3,21 @@ import { IProduct } from "../../models/data/index";
 
 export interface IproductsState {
   products: IProduct[];
-  filteredProducts: IProduct[];
-  selectedCategory: string;
+  product: IProduct;
 }
 
 const initialState: IproductsState = {
   products: [],
-  filteredProducts: [],
-  selectedCategory: "",
+  product: {
+    id: "",
+    barcode: "",
+    name: "",
+    category: "",
+    price: 0,
+    quantity: 0,
+    brand: "",
+    expDate: "",
+  },
 };
 
 export const productsSlice = createSlice({
@@ -21,34 +28,43 @@ export const productsSlice = createSlice({
       return {
         ...state,
         products: action.payload,
-        filteredProducts: [...action.payload],
       };
     },
-    addCategory: (state, action: PayloadAction<string>) => {
-      return{
+    addProduct: (state, action: PayloadAction<IProduct>) => {
+      return {
         ...state,
-        selectedCategory: action.payload
-      }
+        products: state.products.concat([action.payload]),
+      };
     },
-    flterByCategory: (state) => {
-      if (state.selectedCategory === "" || state.selectedCategory === "all") {
-        return {
-          ...state,
-          filteredProducts: [...state.products],
-        };
-      } else {
-        let newArray = state.products.filter(
-          (item: IProduct) => item.category === state.selectedCategory
-        );
-        return {
-          ...state,
-          filteredProducts: newArray,
-        };
-      }
+    removeProduct: (state, action) => {
+      return {
+        ...state,
+        products: state.products.filter(
+          (item) => item.id !== action.payload.id
+        ),
+      };
+    },
+    updateProduct: (state, action: PayloadAction<IProduct>) => {
+      return {
+        ...state,
+        product: action.payload,
+      };
+    },
+    clearProduct: (state) => {
+      return {
+        ...state,
+        product: initialState.product,
+      };
     },
   },
 });
 
-export const { setAllProducts } = productsSlice.actions;
+export const {
+  setAllProducts,
+  addProduct,
+  removeProduct,
+  updateProduct,
+  clearProduct,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;
