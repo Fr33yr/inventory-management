@@ -15,18 +15,11 @@ interface DataType {
   category: string;
 }
 
-interface MyFormValues {
-  title: string;
-  price: number;
-  stock: number;
-  brand: string;
-  category: string;
-}
-
 function Inventory() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     getDocuments("products")
@@ -96,7 +89,7 @@ function Inventory() {
       key: "edit",
       render: (_, record) => (
         <Space size={"middle"}>
-          <Button>
+          <Button onClick={() => console.log("Editando..")}>
             <EditOutlined />
           </Button>
         </Space>
