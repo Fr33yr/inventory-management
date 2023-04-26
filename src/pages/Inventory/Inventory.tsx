@@ -3,8 +3,8 @@ import InventoryView from "./inventoryview/InventoryView";
 import { getDocuments } from "../../../services/api/firebase";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import InventoryForm from "./inventoryform/InventoryForm";
-
-import { Button } from "antd";
+import { Button, Space } from "antd";
+import { EditOutlined } from "@ant-design/icons";
 
 interface DataType {
   key: React.Key;
@@ -90,6 +90,17 @@ function Inventory() {
       title: "Expiration",
       dataIndex: "expirationDate",
       key: "expirationDate",
+    },
+    {
+      title: "Edit",
+      key: "edit",
+      render: (_, record) => (
+        <Space size={"middle"}>
+          <Button>
+            <EditOutlined />
+          </Button>
+        </Space>
+      ),
     },
   ];
 
