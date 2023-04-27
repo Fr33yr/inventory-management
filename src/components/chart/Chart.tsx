@@ -66,7 +66,6 @@ function Chart() {
             pointRadius: 4,
             pointBorderColor: "rgb(53, 162, 235)",
             pointBackgroundColor: "rgb(53, 100, 235)",
-            yAxisID: "y1",
           },
         ],
       };
@@ -77,7 +76,6 @@ function Chart() {
 
   const options = {
     responsive: true,
-
     plugins: {
       title: {
         display: true,
