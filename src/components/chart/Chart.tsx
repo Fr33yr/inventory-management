@@ -3,6 +3,26 @@ import { Card } from "antd";
 import { getRevenue } from "../../../services/api/dummy";
 import { Line } from "react-chartjs-2";
 import { Utils } from "../../utils/months";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 //  Este componente se encarga de gestionar la
 //  logica y la informacion de la chart
@@ -38,8 +58,15 @@ function Chart() {
         datasets: [
           {
             label: "Revenue",
+            tension: 0.5,
+            fill: true,
             data: data,
-            backgroundColor: "rgba(255, 0, 0, 1)",
+            borderColor: "rgb(53, 162, 235)",
+            backgroundColor: "rgba(53, 162, 235, 0.5)",
+            pointRadius: 4,
+            pointBorderColor: "rgb(53, 162, 235)",
+            pointBackgroundColor: "rgb(53, 100, 235)",
+            yAxisID: "y1",
           },
         ],
       };
@@ -50,20 +77,23 @@ function Chart() {
 
   const options = {
     responsive: true,
+
     plugins: {
-      legend: {
-        position: "bottom",
-      },
       title: {
         display: true,
-        text: "Order Revenue",
+        text: "Earnings during the year",
+      },
+    },
+    scales: {
+      y: {
+        position: "right" as const,
       },
     },
   };
 
   return (
     <Card style={{ width: 500, height: 250 }}>
-      <Line data={reveneuData} />
+      <Line data={reveneuData} options={options} />
     </Card>
   );
 }
