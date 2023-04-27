@@ -13,10 +13,6 @@ const Monts: string[] = [
   "Feb",
 ];
 
-type width = {
-    count: number
-}
-
-export function Utils({count}: width){
+export function Utils(count: number){
     return Monts.slice(0,count)
 }
