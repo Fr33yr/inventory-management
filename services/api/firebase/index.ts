@@ -14,15 +14,18 @@ import {
 import { db } from "../../db/config/firebase";
 import { IMessage } from "../../../src/models/data/index";
 
+type DocId = {
+  id: string
+}
 
 const createDocument = async (
   params: any,
   collectionName: string
-): Promise<IMessage | undefined> => {
+): Promise<IMessage | DocId | undefined> => {
   const docData = { ...params };
   try {
-    await addDoc(collection(db, collectionName), docData);
-    return { message: "Document created!" };
+    const response: DocId = await addDoc(collection(db, collectionName), docData)
+    return {id: response.id}
   } catch (error) {
     if (error instanceof Error) return { message: error };
   }

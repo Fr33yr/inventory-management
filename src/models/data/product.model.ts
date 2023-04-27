@@ -1,20 +1,20 @@
 export interface IProduct {
   id: string;
-  barcode: string;
+  barcode: number;
   name: string;
   category: string;
   price: number;
-  quantity: number;
+  stock: number;
   brand: string;
-  expDate: string;
+  expirationDate: string;
 }
 
 export interface IProductForm {
-  barcode: string;
+  barcode: number;
   name: string;
   category: string;
   price: number;
-  quantity: number;
+  stock: number;
   brand: string;
-  expDate: string;
+  expirationDate: string;
 }
