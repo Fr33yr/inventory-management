@@ -3,19 +3,11 @@ import InventoryView from "./inventoryview/InventoryView";
 import { getDocuments } from "../../../services/api/firebase";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import InventoryForm from "./inventoryform/InventoryForm";
-
-import { Button } from "antd";
+import { Button, Space } from "antd";
+import { EditOutlined } from "@ant-design/icons";
 
 interface DataType {
   key: React.Key;
-  title: string;
-  price: number;
-  stock: number;
-  brand: string;
-  category: string;
-}
-
-interface MyFormValues {
   title: string;
   price: number;
   stock: number;
@@ -27,6 +19,7 @@ function Inventory() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     getDocuments("products")
@@ -85,6 +78,22 @@ function Inventory() {
       dataIndex: "stock",
       defaultSortOrder: "descend",
       sorter: (a: any, b: any) => a.stock - b.stock,
+    },
+    {
+      title: "Expiration",
+      dataIndex: "expirationDate",
+      key: "expirationDate",
+    },
+    {
+      title: "Edit",
+      key: "edit",
+      render: (_, record) => (
+        <Space size={"middle"}>
+          <Button onClick={() => console.log("Editando..")}>
+            <EditOutlined />
+          </Button>
+        </Space>
+      ),
     },
   ];
 
