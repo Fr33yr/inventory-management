@@ -1,29 +1,41 @@
 import { useFormik } from "formik";
-import { createDocument } from "../../../../services/api/firebase";
+import {
+  createDocument,
+  updateDocument,
+} from "../../../../services/api/firebase";
 import styles from "./inventoryForm.module.css";
 import * as Yup from "yup";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { addProduct } from "../../../redux/slices/productsSlices";
 
 type Props = {
   onClose: Function;
+  isEditing: boolean;
 };
 
-const InventoryForm = ({ onClose }: Props) => {
+const InventoryForm = ({ onClose, isEditing }: Props) => {
+  const dispatch = useAppDispatch()
+  const product = useAppSelector((state) => state.products.product);
   interface MyFormValues {
+    key?: React.Key;
+    id?: string;
+    barcode: number;
     name: string;
-    price: string;
-    barcode: string;
     category: string;
-    stock: string;
+    price: number;
+    stock: number;
     brand: string;
+    expirationDate: string;
   }
 
-  const initialValues: MyFormValues = {
+  const initialValues: MyFormValues = isEditing ? product : {
     name: "",
-    price: "",
-    barcode: "",
-    stock: "",
+    price: 0,
+    barcode: 0,
+    stock: 0,
     brand: "",
     category: "",
+    expirationDate: ""
   };
 
   const validationSchema = Yup.object().shape({
@@ -41,18 +53,26 @@ const InventoryForm = ({ onClose }: Props) => {
 
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema,
+    validationSchema: null,
     onSubmit: (values) => {
-      createDocument(values, "products").then((res) => {
-        if (res) {
-          onClose();
-        }
-      });
+      if(isEditing){
+        delete values.id
+        updateDocument(values, product.id, "products").then((res) => {
+          if (res) {
+            onClose();
+          }
+        })
+      }else{
+        delete values.id
+        createDocument(values, "products").then((res:any) => {
+          if (res.id) {
+            dispatch(addProduct({...values, id: res.id}))
+            onClose();
+          }
+        });
+      }
     },
   });
-
-
-
 
   return (
     <div className={styles.inventorymodal}>
@@ -100,13 +120,14 @@ const InventoryForm = ({ onClose }: Props) => {
         )}
 
         <label htmlFor="expiracion">Expiracion</label>
-          <input type="date"
+        <input
+          type="date"
           id="expirationDate"
           name="expirationDate"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.brand}
-          />
+          value={formik.values.expirationDate}
+        />
 
         <label htmlFor="stock">Stock:</label>
         <input

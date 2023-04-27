@@ -10,13 +10,13 @@ const initialState: IproductsState = {
   products: [],
   product: {
     id: "",
-    barcode: "",
+    barcode: 0,
     name: "",
     category: "",
     price: 0,
-    quantity: 0,
+    stock: 0,
     brand: "",
-    expDate: "",
+    expirationDate: "",
   },
 };
 

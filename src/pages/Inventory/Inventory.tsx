@@ -3,19 +3,25 @@ import InventoryView from "./inventoryview/InventoryView";
 import { getDocuments } from "../../../services/api/firebase";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import InventoryForm from "./inventoryform/InventoryForm";
+import {updateProduct, clearProduct} from '../../redux/slices/productsSlices'
 import { Button, Space } from "antd";
 import { EditOutlined } from "@ant-design/icons";
+import { useAppDispatch } from "../../hooks";
 
 interface DataType {
   key: React.Key;
-  title: string;
+  id: string;
+  barcode: number;
+  name: string;
+  category: string;
   price: number;
   stock: number;
   brand: string;
-  category: string;
+  expirationDate: string;
 }
 
 function Inventory() {
+  const dispatch = useAppDispatch()
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -33,12 +39,21 @@ function Inventory() {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleFormOpen = () => {
+  const handleFormOpen = (props:DataType) => {
+    dispatch(updateProduct(props))
     setShowForm(true);
   };
 
+  const handleUpdateForm = (props:DataType) => {
+    dispatch(updateProduct(props))
+    setShowForm(true);
+    setIsEditing(true)
+  };
+
   const handleFormClose = () => {
+    dispatch(clearProduct())
     setShowForm(false);
+    setIsEditing(false)
   };
 
   const columns: ColumnsType<DataType> = [
@@ -89,13 +104,14 @@ function Inventory() {
       key: "edit",
       render: (_, record) => (
         <Space size={"middle"}>
-          <Button onClick={() => console.log("Editando..")}>
+          <Button onClick={() => handleUpdateForm(record)}>
             <EditOutlined />
           </Button>
         </Space>
       ),
     },
   ];
+
 
   return (
     <>
@@ -105,7 +121,7 @@ function Inventory() {
         columns={columns}
         onOpen={handleFormOpen}
       />
-      {showForm && <InventoryForm onClose={handleFormClose} />}
+      {showForm && <InventoryForm onClose={handleFormClose} isEditing={isEditing}/>}
     </>
   );
 }
