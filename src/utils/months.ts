@@ -1,16 +1,16 @@
 const Monts: string[] = [
-  "April",
-  "June",
-  "September",
-  "November",
-  "January",
-  "March",
+  "Apr",
+  "Jun",
+  "Sep",
+  "Nov",
+  "Jan",
+  "Mar",
   "May",
-  "July",
-  "August",
-  "October",
-  "December",
-  "February",
+  "Jul",
+  "Aug",
+  "Oct",
+  "Dec",
+  "Feb",
 ];
 
 type width = {
