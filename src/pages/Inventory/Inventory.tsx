@@ -3,10 +3,10 @@ import InventoryView from "./inventoryview/InventoryView";
 import { getDocuments } from "../../../services/api/firebase";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import InventoryForm from "./inventoryform/InventoryForm";
-import {updateProduct, clearProduct} from '../../redux/slices/productsSlices'
+import {setProduct, clearProduct, setAllProducts} from '../../redux/slices/productsSlices'
 import { Button, Space } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 interface DataType {
   key: React.Key;
@@ -22,8 +22,8 @@ interface DataType {
 
 function Inventory() {
   const dispatch = useAppDispatch()
+  const products = useAppSelector((state) => state.products.products)
   const [loading, setLoading] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -31,7 +31,7 @@ function Inventory() {
     getDocuments("products")
       .then((res: any) => {
         if (res.data) {
-          setDataSource(res.data);
+          dispatch(setAllProducts(res.data))
         } else if (res.message) {
           console.log(res.message);
         }
@@ -40,12 +40,12 @@ function Inventory() {
   }, []);
 
   const handleFormOpen = (props:DataType) => {
-    dispatch(updateProduct(props))
+    //dispatch(setProduct(props))
     setShowForm(true);
   };
 
   const handleUpdateForm = (props:DataType) => {
-    dispatch(updateProduct(props))
+    dispatch(setProduct(props))
     setShowForm(true);
     setIsEditing(true)
   };
@@ -69,7 +69,7 @@ function Inventory() {
     {
       title: "Brand",
       dataIndex: "brand",
-      filters: dataSource
+      filters: products
         .map((item: any) => ({ text: item.brand, value: item.brand }))
         .filter(
           (obj, index, self) =>
@@ -79,7 +79,7 @@ function Inventory() {
     {
       title: "Category",
       dataIndex: "category",
-      filters: dataSource
+      filters: products
         .map((item: any) => ({ text: item.category, value: item.category }))
         .filter(
           (obj, index, self) =>
@@ -117,7 +117,7 @@ function Inventory() {
     <>
       <InventoryView
         loading={loading}
-        dataSource={dataSource}
+        dataSource={products}
         columns={columns}
         onOpen={handleFormOpen}
       />
