@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import ChartCard from "./chartview/ChartCard";
 import { Card } from "antd";
 import { getRevenue } from "../../../services/api/dummy";
 import { Line } from "react-chartjs-2";
+import { Utils } from "../../utils/months";
 
 //  Este componente se encarga de gestionar la
 //  logica y la informacion de la chart
@@ -18,8 +18,6 @@ interface Props {
   };
 }
 
-
-
 function Chart() {
   const [reveneuData, setReveneuData] = useState<{
     labels: string[];
@@ -31,15 +29,12 @@ function Chart() {
 
   useEffect(() => {
     getRevenue().then((res) => {
-      const labels = res.carts.map((cart: any) => {
-        return `User-${cart.userId}`;
-      });
       const data = res.carts.map((cart: any) => {
         return cart.discountedTotal;
       });
 
       const dataSource = {
-        labels,
+        labels: Utils(12).map((month: string) => month),
         datasets: [
           {
             label: "Revenue",
