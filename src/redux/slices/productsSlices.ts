@@ -45,10 +45,22 @@ export const productsSlice = createSlice({
       };
     },
     updateProduct: (state, action: PayloadAction<IProduct>) => {
-      return {
+      let objectIndex = state.products.findIndex((item) => item.id === action.payload.id)
+      let productsCopy = [...state.products]
+      if(objectIndex !== -1){
+        productsCopy[objectIndex] = action.payload
+      }
+      console.log(action.payload)
+      return{
         ...state,
-        product: action.payload,
-      };
+        products: productsCopy
+      }
+    },
+    setProduct:(state, action: PayloadAction<IProduct>)=>{
+      return{
+        ...state,
+        product: action.payload
+      }
     },
     clearProduct: (state) => {
       return {
@@ -61,6 +73,7 @@ export const productsSlice = createSlice({
 
 export const {
   setAllProducts,
+  setProduct,
   addProduct,
   removeProduct,
   updateProduct,
