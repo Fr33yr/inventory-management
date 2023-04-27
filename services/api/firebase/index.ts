@@ -39,6 +39,7 @@ const updateDocument = async (
   const ref = doc(db, collectionName, id);
   try {
     await updateDoc(ref, { ...params });
+    return {message: "Document updated!"}
   } catch (error) {
     if (error instanceof Error) return { message: error };
   }
