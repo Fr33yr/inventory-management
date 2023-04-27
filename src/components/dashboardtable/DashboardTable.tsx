@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { getDocuments } from "../../../services/api/firebase";
-import { Table, Typography } from "antd";
-import styles from './DashboardTable.module.css'
+import { Space, Table, Typography } from "antd";
+import styles from "./DashboardTable.module.css";
+import { EyeOutlined } from "@ant-design/icons";
 
 // Este componente renderiza un titulo y una tabla
-// que muestra informacion 
+// que muestra informacion
 
 function DashboardTable() {
   const [dataSource, setDataSource] = useState([]);
@@ -12,11 +13,16 @@ function DashboardTable() {
 
   useEffect(() => {
     setLoading(true);
-    getDocuments('orders').then((res:any) => {
-      setDataSource(res.data);
+    getDocuments("orders").then((res: any) => {
+      const data = res.data.slice(0, 3);
+      setDataSource(data);
       setLoading(false);
     });
   }, []);
+
+  const handleClick = () => {
+    console.log("holaaa");
+  };
 
   return (
     <div className={styles.dashboardtable}>
@@ -24,22 +30,30 @@ function DashboardTable() {
       <Table
         columns={[
           {
-            title: "Title",
-            dataIndex: "title",
+            title: "Order Date",
+            dataIndex: "date",
           },
           {
-            title: "Quantity",
-            dataIndex: "quantity",
+            title: "Cliente",
+            dataIndex: "cliente",
           },
           {
-            title: "Price",
-            dataIndex: "discountedPrice",
+            title: "Total",
+            dataIndex: "total",
+          },
+          {
+            title: "Detalle",
+            render: () => (
+              <Space>
+                <EyeOutlined onClick={handleClick} />
+              </Space>
+            ),
           },
         ]}
         loading={loading}
         dataSource={dataSource}
         pagination={false}
-      ></Table>
+        size="middle"></Table>
     </div>
   );
 }
