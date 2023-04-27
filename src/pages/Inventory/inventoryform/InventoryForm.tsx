@@ -6,7 +6,7 @@ import {
 import styles from "./inventoryForm.module.css";
 import * as Yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { addProduct } from "../../../redux/slices/productsSlices";
+import { addProduct, updateProduct } from "../../../redux/slices/productsSlices";
 
 type Props = {
   onClose: Function;
@@ -59,6 +59,7 @@ const InventoryForm = ({ onClose, isEditing }: Props) => {
         delete values.id
         updateDocument(values, product.id, "products").then((res) => {
           if (res) {
+            dispatch(updateProduct({...values, id: product.id}))
             onClose();
           }
         })
